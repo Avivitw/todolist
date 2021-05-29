@@ -1,5 +1,5 @@
 {
-  "name": "node-skeleton",
+  "name": "todolist",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,11 +9,9 @@
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
-  "author": "Lighthouse Labs",
+  "author": "Wade Croft, Avivit Weissman",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "chalk": "^2.4.2",
     "dotenv": "^2.0.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
