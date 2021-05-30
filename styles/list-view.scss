@@ -1,0 +1,22 @@
+@use 'layout';
+
+.list-view {
+  display:flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
+  background-color: #C5D0DD;
+  border-radius: 80px;
+}
+
+.list-template {
+  display: flex;
+  flex-direction: column;
+  height: 97vh;
+}
+
+.collapse {
+  padding: 25px;
+  font-size: 5em;
+  height:100px;
+}
