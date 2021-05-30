@@ -1,11 +1,13 @@
 @use 'layout';
 
 .new-todo {
-  background-color: #2B394A;
+  background-color: white;
   display:flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border-radius: 25px;
+  border-bottom: #2B394A;
 }
 
 .add-task-button {
@@ -14,23 +16,26 @@
   font-family: 'Quicksand', sans-serif;
   font-size: 3em;
   border-radius: 25px;
+  color: white;
+  background-color: #2B394A;
+
 }
 
 .new-todo-form {
   padding: 20px;
-  width: 80%;
+  width: 75%;
 }
-
 
 .new-task-text {
   outline: none;
+  height: 95px;
   border: 5px;
   border-radius: 25px;
-  color: #C5D0DD;
-  background-color: #2B394A;
+  color: #2B394A;
+  background-color: white;
   resize: none;
   font-size: 4em;
-  width: 80%
+  width: 95%
 }
 
 
