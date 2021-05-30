@@ -1,16 +1,24 @@
 @use 'layout';
 
 .nav {
-  color: #C5D0DD;
+  color: #2B394A;
   height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #2B394A;
+  background-color: white;
 }
 
-#header-text {
+.nav-icon {
+  padding: 10px;
+}
+
+.nav-bar {
   padding-left: 25px;
   font-size: 4em;
+}
+
+#nav-text {
+  padding: 45px;
 }

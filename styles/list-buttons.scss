@@ -5,12 +5,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   background-color: white;
 }
 
 .lists-item {
-  color: #C5D0DD;
+  color: #2B394A;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -19,9 +19,10 @@
   margin: 10px;
   font-size: 3em;
   border-radius: 25px;
+  border: 5px solid #2B394A;
   height: 240px;
   width: 85%;
-  background-color: #2B394A;
+  background-color: white;
   box-shadow: 12px 12px grey;
 }
 
@@ -36,4 +37,8 @@
 
 .lists-icons {
   margin: 40px;
+}
+
+.spacer {
+  width: 100px;
 }
