@@ -24,13 +24,16 @@
     </nav>
     <div class='main-container'>
       <div class='avatar'>
-        <img id='profile-pic'src="/images/user-image.png">
+        <div class='profile-pic'>
+        <img src="/images/user-image.png">
+      </div>
+      <p id='user-name'>Bob Stevens</p>
       </div>
       <div class="new-todo">
         <form id='new-todo-form'>
-          <textarea name="text" id="new-task-text"></textarea>
+          <textarea name="text" id="new-task-text" placeholder='Add a new task...'></textarea>
         </form>
-        <button for='new-todo-form'type="submit">Add</button>
+        <button id='add-task-button'for='new-todo-form'type="submit">Add</button>
       </div>
     </div>
     <div class='lists-group'>
