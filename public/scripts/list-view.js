@@ -3,66 +3,83 @@ $(document).ready(function(){
   const lists = {
     "eat": {
       "title": "Eat List",
-      "item1": {
+      "items": [
+        {
         "name": "Spaghetti",
         "checkedOff": false
       },
-      "item2": {
+      {
         "name": "Wendy's",
         "checkedOff": false
       },
-      "item3": {
+      {
         "name": "McDonalds",
         "checkedOff": false
       }
+    ]
     },
     "buy": {
       "title": "Shopping List",
-      "item1": {
+      "items": [
+        {
         "name": "Soccer Ball",
         "checkedOff": false
       },
-      "item2": {
+      {
         "name": "New camping gear",
         "checkedOff": false
       },
-      "item3": {
+      {
         "name": "That new Xbox game",
         "checkedOff": false
       }
+    ]
     },
     "watch": {
       "title": "Watch List",
-      "item1": {
+      "items": [
+        {
         "name": "The Titanic",
         "checkedOff": false
       },
-      "item2": {
+      {
         "name": "Home Alone 2",
         "checkedOff": false
       },
-      "item3": {
+      {
         "name": "Superbad",
         "checkedOff": false
       }
+    ]
     },
     "read": {
       "title": "Reading List",
-      "item1": {
+      "items": [
+        {
         "name": "Moby Dick",
         "checkedOff": false
       },
-      "item2": {
+      {
         "name": "The Great Gatsby",
         "checkedOff": false
       },
-      "item3": {
+      {
         "name": "To Kill a Mockingbird",
         "checkedOff": false
       }
+    ]
     }
   }
-  console.log(lists);
+  // Create the to-do list html items
+  const createRows = function(list) {
+    for (const item of list) {
+      $('.todo-list').append(
+        `<div class='todo-item'>
+        <i class="check-box fas fa-square fa-lg"></i>
+        <p>${item.name}</p>
+      </div>`);
+  };
+};
 
   // Slide down the list view when the icon is clicked
   $('.collapse-icon').click(function() {
@@ -73,20 +90,19 @@ $(document).ready(function(){
   // Set the title of the list view
   $('#eat-list').click(function() {
     $('.list-title').html(lists.eat.title);
-    $('.todo-list').append(
-      `<div class='todo-item'>
-      <i class="check-box fas fa-square fa-lg"></i>
-      <p>To do list item 2</p>
-    </div>`);
+    // Create the to-do list html items and add them to the page
+    createRows(lists.eat.items);
   });
   $('#read-list').click(function() {
     $('.list-title').html(lists.read.title);
+    createRows(lists.read.items);
   });
   $('#watch-list').click(function() {
     $('.list-title').html(lists.watch.title);
+    createRows(lists.watch.items);
   });
   $('#buy-list').click(function() {
     $('.list-title').html(lists.buy.title);
+    createRows(lists.buy.items);
   });
-
 });
