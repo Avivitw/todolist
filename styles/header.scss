@@ -5,13 +5,13 @@
   flex-direction: column;
   justify-content:space-between;
   align-items: stretch;
-  height: 43vh;
-  background-color: blueviolet;
+  height: 54vh;
+  background-color: white;
 }
 
 .avatar {
   font-size: 3em;
-  background-color: crimson;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,12 +19,15 @@
 }
 
 #user-name {
-  background-color: darkorange;
+  color: #2B394A;
   margin: 0;
 }
 
 .profile-pic {
-  background-color: darkgreen;
+  width: 100px;
+  height:auto;
+  padding: 15px;
+  border-radius: 160px;
   display: flex;
   flex-direction: row;
   justify-content: center;

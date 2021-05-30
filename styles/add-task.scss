@@ -1,21 +1,35 @@
 @use 'layout';
 
 .new-todo {
-  background-color: brown;
+  background-color: #2B394A;
   display:flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
-#new-todo-form {
+.add-task-button {
+  height: 100px;
+  width: 150px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 3em;
+  border-radius: 25px;
+}
+
+.new-todo-form {
   padding: 20px;
   width: 80%;
 }
 
-#new-task-text {
-  font-size: 3em;
-  width: 100%
+
+.new-task-text {
+  border: 5px;
+  border-radius: 25px;
+  color: #C5D0DD;
+  background-color: #2B394A;
+  resize: none;
+  font-size: 4em;
+  width: 80%
 }
 
 

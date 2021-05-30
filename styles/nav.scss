@@ -1,12 +1,13 @@
 @use 'layout';
 
 .nav {
+  color: #C5D0DD;
   height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: cornflowerblue;
+  background-color: #2B394A;
 }
 
 #header-text {
