@@ -1,6 +1,20 @@
 @use 'layout';
 
-.add-task {
-  height: 43vh;
-  background-color: blueviolet;
+.new-todo {
+  background-color: brown;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
+
+#new-todo-form {
+  padding: 20px;
+  width: 80%;
+}
+
+#new-task-text {
+  width: 100%
+}
+
+

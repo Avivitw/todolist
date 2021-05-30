@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/list-buttons.css" type="text/css" />
     <link rel="stylesheet" href="/styles/add-task.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <!-- Link to fontAwesome icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Link to external fonts-->
@@ -21,16 +22,16 @@
     <nav class='nav'>
       <span id='header-text'>To-Do List</span>
     </nav>
-    <div class='add-task'>
-      <section class="new-todo">
-        <form>
-          <label for="new-todo">What would you like to add?</label>
-          <textarea name="text" id="tweet-text"></textarea>
-          <div>
-            <button type="submit">Add</button>
-          </div>
+    <div class='main-container'>
+      <div class='avatar'>
+        <img id='profile-pic'src="/images/user-image.png">
+      </div>
+      <div class="new-todo">
+        <form id='new-todo-form'>
+          <textarea name="text" id="new-task-text"></textarea>
         </form>
-      </section>
+        <button for='new-todo-form'type="submit">Add</button>
+      </div>
     </div>
     <div class='lists-group'>
       <div class='lists-row'>
