@@ -26,6 +26,13 @@
   box-shadow: 12px 12px rgb(187, 187, 187);
 }
 
+.lists-item:active {
+  background-color: #2B394A;
+  border: 5px solid #C5D0DD;
+  color: white;
+  box-shadow: none;
+}
+
 .lists-row {
   padding: 40px;
   padding-right: 60px;

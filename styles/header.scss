@@ -1,11 +1,5 @@
 @use 'layout';
 
-.page {
-  position: fixed;
-  width: 100%;
-  top: 8vh;
-}
-
 .main-container {
   display: flex;
   flex-direction: column;
@@ -30,12 +24,12 @@
 }
 
 .profile-pic {
-  width: 100px;
   height:auto;
   padding: 15px;
   border-radius: 160px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-color: #2B394A;
   margin-top: 25px;
 }
