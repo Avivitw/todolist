@@ -1,0 +1,15 @@
+@use 'layout';
+
+.nav {
+  height: 8vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: cornflowerblue;
+}
+
+#header-text {
+  padding-left: 25px;
+  font-size: 4em;
+}
