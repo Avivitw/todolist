@@ -11,6 +11,9 @@ $accent-1: #FDA5A4;
 $accent-2: #C5D0DD;
 
 body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
   background-color: #EEE;
 
   h1, h2, h3, h4, h5, h6 {
@@ -30,7 +33,16 @@ body {
 
 .nav {
   height: 8vh;
-  background-color:cornflowerblue
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: cornflowerblue;
+}
+
+#header-text {
+  padding-left: 25px;
+  font-size: 4em;
 }
 
 .add-task {
@@ -47,9 +59,24 @@ body {
   background-color: cadetblue;
 }
 
-.list {
+.lists-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+  font-size: 3em;
+  border-radius: 25px;
   height: 240px;
   width: 85%;
-  background-color: black;
+  background-color: white;
+}
 
+.lists-row {
+  padding: 15px;
+  width: 85%;
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
