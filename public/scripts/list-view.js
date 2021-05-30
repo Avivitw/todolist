@@ -66,13 +66,18 @@ $(document).ready(function(){
 
   // Slide down the list view when the icon is clicked
   $('.collapse-icon').click(function() {
-    console.log('click handled');
     $('.page').slideDown();
+    $('.todo-item').remove();
   });
 
   // Set the title of the list view
   $('#eat-list').click(function() {
     $('.list-title').html(lists.eat.title);
+    $('.todo-list').append(
+      `<div class='todo-item'>
+      <i class="check-box fas fa-square fa-lg"></i>
+      <p>To do list item 2</p>
+    </div>`);
   });
   $('#read-list').click(function() {
     $('.list-title').html(lists.read.title);
@@ -83,4 +88,5 @@ $(document).ready(function(){
   $('#buy-list').click(function() {
     $('.list-title').html(lists.buy.title);
   });
+
 });
