@@ -1,12 +1,30 @@
 // See: https://sass-lang.com/
-$font-stack: Martel, sans-serif;
-$
+
+// Fonts
+$font-heading: Karla, sans-serif;
+$font-body: Martel, serif;
+$font-buttons: Karla, sans-serif;
+
+// Colours
+$text-color: #2B394A;
+$accent-1: #FDA5A4;
+$accent-2: #C5D0DD;
 
 
 body {
   background-color: #EEE;
 
-  h1 {
-    color: #244751;
-  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+    color: $text-color;
+    font-weight: 700;
+}
+
+}
+.button {
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }
