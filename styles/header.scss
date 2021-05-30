@@ -1,5 +1,11 @@
 @use 'layout';
 
+.page {
+  position: fixed;
+  width: 100%;
+  top: 8vh;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;

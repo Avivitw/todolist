@@ -33,5 +33,26 @@
   color: white;
   font-size: 5em;
   margin: 15px;
-  padding-left: 20px;
+  padding-left: 80px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.todo-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 60px;
+  color: white;
+  font-size: 4em;
+}
+
+.check-box {
+  padding: 40px;
 }

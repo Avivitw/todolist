@@ -11,7 +11,10 @@ $accent-1: #FDA5A4;
 $accent-2: #C5D0DD;
 
 body {
+  position: fixed;
+  top: 10vh;
   margin: 0;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: white;

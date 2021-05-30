@@ -2,12 +2,15 @@
 
 .nav {
   color: #2B394A;
+  width: 100%;
   height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: white;
+  position: fixed;
+  top:0;
 }
 
 .nav-icon {
