@@ -15,8 +15,17 @@
   height: 97vh;
 }
 
-.collapse {
-  padding: 25px;
+.list-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.collapse-icon {
+  color: white;
+  padding: 50px;
+  padding-right: 60px;
   font-size: 5em;
   height:100px;
 }
