@@ -10,7 +10,6 @@ $text-color: #2B394A;
 $accent-1: #FDA5A4;
 $accent-2: #C5D0DD;
 
-
 body {
   background-color: #EEE;
 
@@ -27,4 +26,19 @@ body {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 3px;
+}
+
+.nav {
+  height: 200px;
+  background-color:cornflowerblue
+}
+
+.add-task {
+  height: 30vh;
+  background-color: blueviolet;
+}
+
+.lists {
+  height: 62vh;
+  background-color: cadetblue;
 }
