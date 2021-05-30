@@ -9,7 +9,7 @@
     <!-- Link to fontAwesome icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Link to external fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Martel:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
   </head>
@@ -19,15 +19,25 @@
       <span id='header-text'>To-Do List</span>
     </nav>
     <div class='add-task'>
+      <section class="new-todo">
+        <h2>New To Do</h2>
+        <form>
+          <label for="new-todo">What would you like to add?</label>
+          <textarea name="text" id="tweet-text"></textarea>
+          <div>
+            <button type="submit">Add</button>
+          </div>
+        </form>
+      </section>
     </div>
     <div class='lists-group'>
       <div class='lists-row'>
-        <div class='lists-item'>list1</div>
-        <div class= 'lists-item'>list2</div>
+        <div class='lists-item'><i class="lists-icons fas fa-utensils fa-lg"></i>Eat</div>
+        <div class= 'lists-item'><i class="lists-icons fas fa-shopping-cart fa-lg"></i>Buy</div>
       </div>
       <div class='lists-row'>
-        <div class='lists-item'>list1</div>
-        <div class='lists-item'>list2</div>
+        <div class= 'lists-item'><i class="lists-icons fas fa-video fa-lg"></i>Watch</div>
+        <div class= 'lists-item'><i class="lists-icons fas fa-book-open fa-lg"></i>Read</div>
       </div>
     </div>
   </body>

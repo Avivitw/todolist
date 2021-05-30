@@ -1,9 +1,9 @@
 // See: https://sass-lang.com/
 
 // Fonts
-$font-heading: Karla, sans-serif;
-$font-body: Martel, serif;
-$font-buttons: Karla, sans-serif;
+$font-heading: Quicksand, sans-serif;
+$font-body: Quicksand, serif;
+$font-buttons: Quicksand, sans-serif;
 
 // Colours
 $text-color: #2B394A;
@@ -15,14 +15,16 @@ body {
   height: 100%;
   overflow: hidden;
   background-color: #EEE;
+  font-family: $font-body;
+  font-weight: 500;
 
   h1, h2, h3, h4, h5, h6 {
     font-family: $font-heading;
     color: $text-color;
     font-weight: 700;
 }
-
 }
+
 .button {
   font-family: $font-heading;
   font-weight: 700;
@@ -46,12 +48,12 @@ body {
 }
 
 .add-task {
-  height: 30vh;
+  height: 42vh;
   background-color: blueviolet;
 }
 
 .lists-group {
-  height: 62vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,9 +64,10 @@ body {
 .lists-item {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin: 20px;
+  padding-right: 40px;
+  margin: 10px;
   font-size: 3em;
   border-radius: 25px;
   height: 240px;
@@ -73,10 +76,14 @@ body {
 }
 
 .lists-row {
-  padding: 15px;
-  width: 85%;
+  padding: 40px;
+  width: 100%;
   background-color: yellow;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.lists-icons {
+  margin: 40px;
 }
