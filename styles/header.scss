@@ -1,0 +1,10 @@
+@use 'layout';
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  height: 43vh;
+  background-color: blueviolet;
+}
