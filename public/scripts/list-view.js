@@ -73,10 +73,8 @@ $(document).ready(function () {
   // Controls the checkmark of each generated box
   const checkBox = function (id, list) {
     const index = id.slice(9);
-    console.log("checkbox",list.items[index]);
     let $el = $(`#${id}`).toggleClass("fa-square fa-check-square");
     if ($el.hasClass("fa-square")) {
-      console.log("false");
       list.items[index].checkedOff = false;
     }
   };
@@ -85,17 +83,16 @@ $(document).ready(function () {
   const createRows = function (list) {
     let id = 0;
     for (const item of list.items) {
-      console.log(item);
       let boxStyle = "fa-square";
       if (item.checkedOff) {
         boxStyle = "fa-check-square";
       }
-      // Appends a new list item
+      // Appends a new element to the list container
       $(".todo-list").append(
         `<div id='todo-${id}'class='todo-item'>
-        <i id='checkbox-${id}'class="check-box fas ${boxStyle} fa-lg"></i>
-        <p>${item.name}</p>
-      </div>`
+          <i id='checkbox-${id}'class="check-box fas ${boxStyle} fa-lg"></i>
+          <p>${item.name}</p>
+        </div>`
       );
       id++;
     }
