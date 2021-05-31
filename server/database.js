@@ -37,7 +37,7 @@ const getList = function(userId, listType) {
 };
 
 //Insert an item to a list
-const insertToDoITEm = function(property) {
+const insertToDoItem = function(property) {
   const query = db.query(
     ` INSERT INTO lists(name)
     VALUES($1)
@@ -68,7 +68,8 @@ const updateItem = function(userId, listType, listId) {
 
 exports.getAllMyLists = getAllMyLists;
 exports.getList = getList;
-exports.insertToDoITEm = insertToDoITEm;
+exports.insertToDoItem = insertToDoItem;
+exports.updateItem = updateItem;
 
 
 
