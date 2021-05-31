@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: stretch;
   align-items: stretch;
-  background-color: #C5D0DD;
+  background-color: #3e5877;
   border-radius: 80px;
 }
 
@@ -49,6 +49,7 @@
 }
 
 .todo-item {
+  width: 85%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -56,6 +57,7 @@
   margin-left: 60px;
   color: white;
   font-size: 4em;
+  border-bottom: 5px solid lightslategrey;
 }
 
 .check-box {
