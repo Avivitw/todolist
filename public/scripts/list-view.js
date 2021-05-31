@@ -81,7 +81,7 @@ $(document).ready(function () {
 
   // Create the to-do list html items
   const createRows = function (listName) {
-    $.ajax(`/api/${listName}`, {
+    $.ajax(`/api/items/${listName}`, {
       method: "GET",
       dataType: "json"
     })

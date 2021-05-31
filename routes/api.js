@@ -9,11 +9,21 @@ const express = require('express');
 const router  = express.Router();
 const { getList, getAllMyLists, insertToDoItem, updateItem } = require('../server/database');
 const userId = 1;
+const categories = {
+  eat: "e",
+  read: "r",
+  watch: "w",
+  buy: "b"};
 
 module.exports = function(database) {
-  // Request made when showing the eat list
-  router.get('/eat', (req, res) => {
-    getList(userId, 'e')
+
+  router.get('/items/:category', (req, res) => {
+    const category = categories[req.params.category];
+    if (!category) {
+      res.status(404).send('Sorry, we cannot find that!');
+      return;
+    }
+    getList(userId, category)
     .then((queryResults)=>{
       // Send the query results to the front end as json
       res.json(queryResults);
@@ -25,44 +35,6 @@ module.exports = function(database) {
     });
   });
 
-  router.get('/buy', (req, res) => {
-    getList(userId, 'b')
-    .then((queryResults)=>{
-      // Send the query results to the front end as json
-      res.json(queryResults);
-      console.log(queryResults);
-    })
-    .catch(e => {
-      console.error(e);
-      res.send(e)
-    });
-  });
-
-  router.get('/watch', (req, res) => {
-    getList(userId, 'w')
-    .then((queryResults)=>{
-      // Send the query results to the front end as json
-      res.json(queryResults);
-      console.log(queryResults);
-    })
-    .catch(e => {
-      console.error(e);
-      res.send(e)
-    });
-  });
-
-  router.get('/read', (req, res) => {
-    getList(userId, 'r')
-    .then((queryResults)=>{
-      // Send the query results to the front end as json
-      res.json(queryResults);
-      console.log(queryResults);
-    })
-    .catch(e => {
-      console.error(e);
-      res.send(e)
-    });
-  });
 
   router.get('/all-lists', (req, res) => {
     getAllMyLists(userId)
