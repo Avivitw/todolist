@@ -1,9 +1,38 @@
 // See: https://sass-lang.com/
 
-body {
-  background-color: #EEE;
+// Fonts
+$font-heading: Quicksand, sans-serif;
+$font-body: Quicksand, sans-serif;
+$font-buttons: Quicksand, sans-serif;
 
-  h1 {
-    color: #244751;
-  }
+// Colours
+$text-color: #2B394A;
+$accent-1: #FDA5A4;
+$accent-2: #C5D0DD;
+$white: white;
+
+body {
+  position: fixed;
+  top: 10vh;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+  font-family: $font-body;
+  font-weight: 500;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+    color: $text-color;
+    font-weight: 700;
+}
+}
+
+.button {
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }

@@ -1,0 +1,36 @@
+@use '/todolist/styles/layout.scss' as *;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items: stretch;
+  height: 45vh;
+  background-color: white;
+}
+
+.avatar {
+  font-size: 4em;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#user-name {
+  color: #2B394A;
+  margin: 0;
+  margin-top: 25px;
+}
+
+.profile-pic {
+  height:auto;
+  padding: 15px;
+  border-radius: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #2B394A;
+  margin-top: 25px;
+}
