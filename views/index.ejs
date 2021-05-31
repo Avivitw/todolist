@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Smart To-Do List</title>
 
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/list-buttons.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/add-task.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/list-view.css" type="text/css" />
+    <!-- Link to fontAwesome icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link to external fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/list-buttons.js"></script>
+    <script type="text/javascript" src="/scripts/list-view.js"></script>
+    <script type="text/javascript" src="/scripts/new-task.js"></script>
   </head>
 
   <body>
-    <h1>Hello World!</h1>
+    <nav class='nav'>
+      <span class='nav-bar'><i class="nav-icon fas fa-bars fa-lg"></i></span>
+      <span id='nav-text'class='nav-bar'>Smart To-Do</span>
+    </nav>
+    <div class='page'>
+    <div class='main-container'>
+      <div class='avatar'>
+        <div class='profile-pic'>
+        <img src="/images/user-image.png">
+      </div>
+      <p id='user-name'>Bob Stevens</p>
+      </div>
+      <div class="new-todo">
+        <form class='new-todo-form'>
+          <textarea name="text" class="new-task-text" placeholder='Add a new task...'></textarea>
+        </form>
+      </div>
+    </div>
+    <div class='lists-group'>
+      <div class='lists-row'>
+        <div id='eat-list'class='lists-item'><i class="lists-icons fas fa-utensils fa-lg"></i>Eat</div>
+        <div class='spacer'></div>
+        <div id='buy-list'class= 'lists-item'><i class="lists-icons fas fa-shopping-cart fa-lg"></i>Buy</div>
+      </div>
+      <div class='lists-row'>
+        <div id='watch-list'class= 'lists-item'><i class="lists-icons fas fa-video fa-lg"></i>Watch</div>
+        <div class='spacer'></div>
+        <div id='read-list'class= 'lists-item'><i class="lists-icons fas fa-book-open fa-lg"></i>Read</div>
+      </div>
+    </div>
+  </div>
+  <div class='list-view'>
+    <div class='list-template'>
+      <div class='list-header'>
+        <h4 class='list-title'>test</h4>
+      <i class="collapse-icon fas fa-chevron-down fs-lg"></i>
+      </div>
+      <div class='todo-list'>
+      </div>
+    </div>
+  </div>
   </body>
 </html>
