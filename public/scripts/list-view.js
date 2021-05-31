@@ -80,23 +80,30 @@ $(document).ready(function () {
   };
 
   // Create the to-do list html items
-  const createRows = function (list) {
-    let id = 0;
-    for (const item of list.items) {
-      let boxStyle = "fa-square";
-      if (item.checkedOff) {
-        boxStyle = "fa-check-square";
+  const createRows = function (listName) {
+    $.ajax(`/api/${listName}`, {
+      method: "GET",
+      dataType: "json"
+    })
+    .then((listItems)=>{
+      let id = 0;
+      console.log(listItems);
+      for (const item of listItems) {
+        let boxStyle = "fa-square";
+        if (item.checkedOff) {
+          boxStyle = "fa-check-square";
+        }
+        // Appends a new element to the list container
+        $(".todo-list").append(
+          `<div id='todo-${id}'class='todo-item'>
+            <i id='checkbox-${id}'class="check-box fas ${boxStyle} fa-lg"></i>
+            <p>${item.name}</p>
+          </div>`
+        );
+        id++;
       }
-      // Appends a new element to the list container
-      $(".todo-list").append(
-        `<div id='todo-${id}'class='todo-item'>
-          <i id='checkbox-${id}'class="check-box fas ${boxStyle} fa-lg"></i>
-          <p>${item.name}</p>
-        </div>`
-      );
-      id++;
-    }
-    return id;
+      return id;
+    });
   };
 
   // Slide down the list view when the icon is clicked
@@ -109,7 +116,7 @@ $(document).ready(function () {
   $("#eat-list").click(function () {
     $(".list-title").html(lists.eat.title);
     // Create the to-do list html items and add them to the page
-    createRows(lists.eat);
+    createRows('eat');
     // Checkbox controls
     $(".check-box").click(function () {
       const id = this.id;
@@ -120,7 +127,7 @@ $(document).ready(function () {
   });
   $("#read-list").click(function () {
     $(".list-title").html(lists.read.title);
-    createRows(lists.read);
+    createRows('read');
     // Checkbox controls
     $(".check-box").click(function () {
       const id = this.id;
@@ -131,7 +138,7 @@ $(document).ready(function () {
   });
   $("#watch-list").click(function () {
     $(".list-title").html(lists.watch.title);
-    createRows(lists.watch);
+    createRows('watch');
     // Checkbox controls
     $(".check-box").click(function () {
       const id = this.id;
@@ -142,7 +149,7 @@ $(document).ready(function () {
   });
   $("#buy-list").click(function () {
     $(".list-title").html(lists.buy.title);
-    createRows(lists.buy);
+    createRows('buy');
     // Checkbox controls
     $(".check-box").click(function () {
       const id = this.id;

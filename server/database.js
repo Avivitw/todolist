@@ -7,7 +7,6 @@ const getAllMyLists = function(userId) {
     FROM lists
     JOIN users On lists.user_id = users.id
     Where users.id = $1;
-    GROUP BY list_type
     LIMIT 4
     ORDER BY lists.id DESC
     ;`, [userId])
@@ -21,14 +20,13 @@ const getAllMyLists = function(userId) {
 //Get a specific list for a user
 const getList = function(userId, listType) {
   const query = db.query(
-    `SELECT name, description,priority, is_checked
+    `SELECT lists.name, description,priority, is_checked
     FROM lists
     JOIN users On lists.user_id = users.id
     Where users.id = $1
     AND list_type = $2
-    GROUP BY list_type
-    LIMIT 4
-    ORDER BY lists.id DESC;`, [userId, listType])
+    ORDER BY lists.id DESC
+    LIMIT 4;`, [userId, listType])
   .then(res=>{
     return res.rows;
   })

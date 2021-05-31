@@ -17,7 +17,7 @@ module.exports = function(database) {
     .then((queryResults)=>{
       // Send the query results to the front end as json
       res.json(queryResults);
-      console.log(queryResults);
+      console.log('API get request results:', queryResults);
     })
     .catch(e => {
       console.error(e);
@@ -52,7 +52,7 @@ module.exports = function(database) {
   });
 
   router.get('/read', (req, res) => {
-    getList(userId, 'e')
+    getList(userId, 'r')
     .then((queryResults)=>{
       // Send the query results to the front end as json
       res.json(queryResults);
