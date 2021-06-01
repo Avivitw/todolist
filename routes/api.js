@@ -51,8 +51,8 @@ module.exports = function(database) {
 
   router.post('/add-item', (req, res) => {
     insertToDoItem(req.body)
-    .then(property => {
-      res.send(property);
+    .then(item => {
+      res.send(item);
     })
     .catch(e=>{
       console.log(e);
@@ -60,12 +60,14 @@ module.exports = function(database) {
     })
   })
 
-  router.post('/update-item/:userid/:itemid', (req, res) => {
-    const listType = req.params.userid;
-    const itemId = req.params.itemid;
-    updateItem(userId, listType, itemId)
-    .then(property => {
-      res.send(property);
+  router.post('/update-item/:itemid', (req, res) => {
+    const listType = req.body.listType;
+    const listId = req.params.itemid;
+    const listName = req.body.listName;
+    const isChecked = req.body.isChecked;
+    updateItem(listId, listType, listName, isChecked)
+    .then(item => {
+      res.send(item);
     })
     .catch(e=>{
       console.log(e);

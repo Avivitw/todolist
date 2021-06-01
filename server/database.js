@@ -5,8 +5,8 @@ const getAllMyLists = function(userId) {
   const query = db.query(
     `SELECT name, description,priority, is_checked
     FROM lists
-    JOIN users On lists.user_id = users.id
-    Where users.id = $1;
+    Where users.id = $1
+    AND is_checked = FALSE
     LIMIT 4
     ORDER BY lists.id DESC
     ;`, [userId])
@@ -20,11 +20,11 @@ const getAllMyLists = function(userId) {
 //Get a specific list for a user
 const getList = function(userId, listType) {
   const query = db.query(
-    `SELECT lists.name, description,priority, is_checked
+    `SELECT lists.id, lists.name, description,priority, is_checked
     FROM lists
-    JOIN users On lists.user_id = users.id
-    Where users.id = $1
+    WHERE user_id = $1
     AND list_type = $2
+    AND is_checked = FALSE
     ORDER BY lists.id DESC
     LIMIT 4;`, [userId, listType])
   .then(res=>{
@@ -37,7 +37,7 @@ const getList = function(userId, listType) {
 //Insert an item to a list
 const insertToDoItem = function(property) {
   const query = db.query(
-    ` INSERT INTO lists(name)
+    `INSERT INTO lists(name)
     VALUES($1)
     RETURNING *;`, [property.name])
   .then(res=>{
@@ -48,14 +48,29 @@ const insertToDoItem = function(property) {
 };
 
 //update an item to in a list
-const updateItem = function(userId, listType, listId) {
-  const query = db.query(
-    `UPDATE  lists
-    SET list_type = $2
-    WHERE users.id = $1
-    AND lists.id = $3
-    RETURNING *;
-    `, [userId, listType, listId])
+const updateItem = function(listId, listType, listName, isChecked) {
+  let updates = [];
+  let params = [];
+  if(listType){
+    params.push(listType);
+    updates.push(`list_type = $${params.length}`)
+  }
+  if(listName){
+    params.push(listName);
+    updates.push(`name= $${params.length}`)
+  }
+  if(isChecked !== undefined){
+    params.push(isChecked);
+    updates.push(`is_checked = $${params.length}`)
+  }
+
+  params.push(listId);
+  const q = `UPDATE  lists
+  SET ${updates.join(',')}
+  WHERE lists.id = $${params.length}
+  RETURNING *;
+  `;
+  const query = db.query(q , params)
   .then(res=>{
     return res.rows;
   })

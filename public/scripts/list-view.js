@@ -3,80 +3,29 @@ $(document).ready(function () {
   const lists = {
     eat: {
       title: "Eat List",
-      items: [
-        {
-          name: "Spaghetti",
-          checkedOff: false,
-        },
-        {
-          name: "Wendy's",
-          checkedOff: false,
-        },
-        {
-          name: "McDonalds",
-          checkedOff: false,
-        },
-      ],
+      buttonId: "#eat-list"
     },
     buy: {
       title: "Shopping List",
-      items: [
-        {
-          name: "Soccer Ball",
-          checkedOff: false,
-        },
-        {
-          name: "New camping gear",
-          checkedOff: false,
-        },
-        {
-          name: "That new Xbox game",
-          checkedOff: false,
-        },
-      ],
+      buttonId: "#buy-list"
     },
     watch: {
       title: "Watch List",
-      items: [
-        {
-          name: "The Titanic",
-          checkedOff: false,
-        },
-        {
-          name: "Home Alone 2",
-          checkedOff: false,
-        },
-        {
-          name: "Superbad",
-          checkedOff: false,
-        },
-      ],
+      buttonId: "#watch-list"
     },
     read: {
       title: "Reading List",
-      items: [
-        {
-          name: "Moby Dick",
-          checkedOff: false,
-        },
-        {
-          name: "The Great Gatsby",
-          checkedOff: false,
-        },
-        {
-          name: "To Kill a Mockingbird",
-          checkedOff: false,
-        },
-      ],
+      buttonId: "#read-list"
     },
   };
   // Controls the checkmark of each generated box
-  const checkBox = function (id, list) {
-    const index = id.slice(9);
-    let $el = $(`#${id}`).toggleClass("fa-square fa-check-square");
-    if ($el.hasClass("fa-square")) {
-      list.items[index].checkedOff = false;
-    }
+  const handleCheckBoxClick = function ($el) {
+    $el.toggleClass("fa-square fa-check-square");
+      //Send to server
+      $.ajax(`/api/update-item/${$el.attr('data-id')}`, {
+        method: "POST",
+        data: {isChecked:$el.hasClass("fa-check-square") }
+      });
   };
 
   // Create the to-do list html items
@@ -86,23 +35,23 @@ $(document).ready(function () {
       dataType: "json"
     })
     .then((listItems)=>{
-      let id = 0;
       console.log(listItems);
       for (const item of listItems) {
         let boxStyle = "fa-square";
-        if (item.checkedOff) {
+        if (item.is_checked) {
           boxStyle = "fa-check-square";
         }
         // Appends a new element to the list container
         $(".todo-list").append(
-          `<div id='todo-${id}'class='todo-item'>
-            <i id='checkbox-${id}'class="check-box fas ${boxStyle} fa-lg"></i>
+          `<div class='todo-item'>
+            <i data-id="${item.id}" class="check-box fas ${boxStyle} fa-lg"></i>
             <p>${item.name}</p>
           </div>`
         );
-        id++;
       }
-      return id;
+      $(".check-box").click(function () {
+        handleCheckBoxClick($(this));
+      });
     });
   };
 
@@ -112,50 +61,21 @@ $(document).ready(function () {
     $(".todo-item").remove();
   });
 
-  // Set the title of the list view
-  $("#eat-list").click(function () {
-    $(".list-title").html(lists.eat.title);
-    // Create the to-do list html items and add them to the page
-    createRows('eat');
-    // Checkbox controls
-    $(".check-box").click(function () {
-      const id = this.id;
-      const index = id.slice(9);
-      lists.eat.items[index].checkedOff = true;
-      checkBox(id, lists.eat);
+
+  const showList = function(listName) {
+    let listObj = lists[listName];
+    $(listObj.buttonId).click(function () {
+      $(".list-title").html(listObj.title);
+      // Create the to-do list html items and add them to the page
+      createRows(listName);
+      $(".page").slideUp();
     });
-  });
-  $("#read-list").click(function () {
-    $(".list-title").html(lists.read.title);
-    createRows('read');
-    // Checkbox controls
-    $(".check-box").click(function () {
-      const id = this.id;
-      const index = id.slice(9);
-      lists.eat.items[index].checkedOff = true;
-      let state = checkBox(id, lists.read);
-    });
-  });
-  $("#watch-list").click(function () {
-    $(".list-title").html(lists.watch.title);
-    createRows('watch');
-    // Checkbox controls
-    $(".check-box").click(function () {
-      const id = this.id;
-      const index = id.slice(9);
-      lists.eat.items[index].checkedOff = true;
-      checkBox(id, lists.watch);
-    });
-  });
-  $("#buy-list").click(function () {
-    $(".list-title").html(lists.buy.title);
-    createRows('buy');
-    // Checkbox controls
-    $(".check-box").click(function () {
-      const id = this.id;
-      const index = id.slice(9);
-      lists.eat.items[index].checkedOff = true;
-      checkBox(id, lists.buy);
-    });
-  });
+
+  };
+  showList('eat');
+  showList('buy');
+  showList('watch');
+  showList('read');
+
+
 });
