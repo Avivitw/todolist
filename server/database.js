@@ -64,13 +64,12 @@ const updateItem = function(listId, listType, listName, isChecked) {
   }
 
   params.push(listId);
-
-  const query = db.query(
-    `UPDATE  lists
-    SET ${updates.join(',')}
-    WHERE lists.id = $${params.length}
-    RETURNING *;
-    `, params)
+  const q = `UPDATE  lists
+  SET ${updates.join(',')}
+  WHERE lists.id = $${params.length}
+  RETURNING *;
+  `;
+  const query = db.query(q , params)
   .then(res=>{
     return res.rows;
   })

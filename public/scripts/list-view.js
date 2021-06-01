@@ -21,10 +21,11 @@ $(document).ready(function () {
   // Controls the checkmark of each generated box
   const handleCheckBoxClick = function ($el) {
     $el.toggleClass("fa-square fa-check-square");
-    if ($el.hasClass("fa-square")) {
       //Send to server
-      $.ajax(`/update-item/${$el.attr('data-id')}`);
-    }
+      $.ajax(`/api/update-item/${$el.attr('data-id')}`, {
+        method: "POST",
+        data: {isChecked:$el.hasClass("fa-check-square") }
+      });
   };
 
   // Create the to-do list html items
