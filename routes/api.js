@@ -52,13 +52,13 @@ module.exports = function(database) {
 
   router.post('/add-item/:itemname', (req, res) => {
     const searchQuery = req.params.itemname
-    const callback = function(listCategory) {
-      return listCategory;
-    }
     console.log("body", req.body);
     console.log('new item name', searchQuery);
     googleSearch(searchQuery).then(res=>{
-      console.log(res);
+      // ** Make database query here **
+      const listType = res;
+      const item = req.body.name;
+      console.log(`add to database: name=${item} list_type=${listType}`);
     });
     // const category = googleSearch(searchQuery);
     // insertToDoItem(req.body)
