@@ -5,8 +5,8 @@ const getAllMyLists = function(userId) {
   const query = db.query(
     `SELECT name, description,priority, is_checked
     FROM lists
-    JOIN users On lists.user_id = users.id
-    Where users.id = $1;
+    Where users.id = $1
+    AND is_checked = FALSE
     LIMIT 4
     ORDER BY lists.id DESC
     ;`, [userId])
@@ -24,6 +24,7 @@ const getList = function(userId, listType) {
     FROM lists
     WHERE user_id = $1
     AND list_type = $2
+    AND is_checked = FALSE
     ORDER BY lists.id DESC
     LIMIT 4;`, [userId, listType])
   .then(res=>{
