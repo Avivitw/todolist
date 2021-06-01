@@ -154,8 +154,6 @@ const googleSearch = function (query) {
   });
 };
 
-googleSearch(args);
-
 module.exports = {
   generalSearch,
   searchMovie,
