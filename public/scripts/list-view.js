@@ -19,11 +19,11 @@ $(document).ready(function () {
     },
   };
   // Controls the checkmark of each generated box
-  const checkBox = function (id, list) {
-    const index = id.slice(9);
-    let $el = $(`#${id}`).toggleClass("fa-square fa-check-square");
+  const handleCheckBoxClick = function ($el) {
+    $el.toggleClass("fa-square fa-check-square");
     if ($el.hasClass("fa-square")) {
-      list.items[index].checkedOff = false;
+      //Send to server
+      $.ajax(`/update-item/${$el.attr('data-id')}`);
     }
   };
 
@@ -34,23 +34,23 @@ $(document).ready(function () {
       dataType: "json"
     })
     .then((listItems)=>{
-      let id = 0;
       console.log(listItems);
       for (const item of listItems) {
         let boxStyle = "fa-square";
-        if (item.checkedOff) {
+        if (item.is_checked) {
           boxStyle = "fa-check-square";
         }
         // Appends a new element to the list container
         $(".todo-list").append(
-          `<div id='todo-${id}'class='todo-item'>
-            <i id='checkbox-${id}'class="check-box fas ${boxStyle} fa-lg"></i>
+          `<div class='todo-item'>
+            <i data-id="${item.id}" class="check-box fas ${boxStyle} fa-lg"></i>
             <p>${item.name}</p>
           </div>`
         );
-        id++;
       }
-      return id;
+      $(".check-box").click(function () {
+        handleCheckBoxClick($(this));
+      });
     });
   };
 
@@ -67,13 +67,6 @@ $(document).ready(function () {
       $(".list-title").html(listObj.title);
       // Create the to-do list html items and add them to the page
       createRows(listName);
-      // Checkbox controls
-      $(".check-box").click(function () {
-        const id = this.id;
-        const index = id.slice(9);
-        lists.eat.items[index].checkedOff = true;
-        checkBox(id, lists.eat);
-      });
       $(".page").slideUp();
     });
 
