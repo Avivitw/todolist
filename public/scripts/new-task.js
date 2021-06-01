@@ -6,7 +6,14 @@ $(document).ready(function(){
     if (text.length > 0 && !appended) {
       $('.new-todo').append(`<button class='add-task-button'for='new-todo-form'type="submit"><i class="fas fa-plus"></i></button>`);
       $('.add-task-button').click(()=>{
-        // Listener for the add task button
+        const fullText = $('.new-task-text').val();
+        const encodedText = encodeURIComponent(fullText);
+        $.ajax(`/api/add-item/${fullText}`, {
+          method: "POST",
+          data: {
+            name: fullText
+          }
+        });
       })
       appended = true;
     }
@@ -22,15 +29,4 @@ $(document).ready(function(){
   $('.new-task-text').keydown(addButton);
   $('.new-task-text').keyup(addButton);
 
-  $('.add-task-button').click(()=>{
-    console.log('add clicked');
-    // $.ajax({
-    //   url:"https://api.monkeylearn.com/v3/classifiers/cl_o46qggZq/classify/",
-    //   method:"POST",
-    //   data: ["Grapefruit"],
-    //   beforeSend: function (xhr) {
-    //     xhr.setRequestHeader("Authorization", "Token " + "11284b94944fd21cd3e16ad2771c02106ec38995");
-    //   }
-    // });
-  })
 });
