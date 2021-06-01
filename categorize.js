@@ -32,14 +32,12 @@ const googleSearch = function (query) {
             // Check avoids error if description is undefined
             if (googleDescription) {
               if (googleDescription.toLowerCase().includes(keyword)) {
-                console.log(`added to ${id} list`);
                 resolve(id);
                 return;
               };
             };
             if (googleTypes) {
               if (googleTypes.includes(keyword)) {
-                console.log(`added to ${id} list`);
                 resolve(id);
                 return;
               };
