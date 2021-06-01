@@ -2,7 +2,7 @@ const request = require('request');
 
 const generalSearch = function (query){
   // Unique appId from Wolfram
-  const appId = 'HJH49X-4TV9W3LX7Q';
+  const appId = process.env.WOLFRAM_ID;
   // Encode query for URL insertion
   const encQuery = encodeURIComponent(query);
   // Wolfram Api URL
@@ -23,7 +23,7 @@ const generalSearch = function (query){
 const searchMovie = function(query) {
   // Example request https://api.themoviedb.org/3/movie/550?api_key=8eb5f5dee8a6b4179174ab1bb9af5f57
   // API Key
-  const appKey = '8eb5f5dee8a6b4179174ab1bb9af5f57';
+  const appKey = process.env.MOVIEDB_ID;
   // Encode query for URL insertion
   const encQuery = encodeURIComponent(query);
   // Movie search URL
@@ -42,19 +42,25 @@ const searchMovie = function(query) {
 
 const bookSearch = function(query){
   // example search GET https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
-  const appKey = 'AIzaSyCxnMrh0sv8614YdHV5lGD-p-9-Mt3bvD8';
+  const appKey = process.env.BOOKS_ID;
     // Encode query for URL insertion
   const encQuery = encodeURIComponent(query);
   const url = `https://www.googleapis.com/books/v1/volumes?q=${encQuery}&key=${appKey}`;
   request(url, function(error, response, body){
     const data = JSON.parse(body);
-    const firstEntry = data.results[0];
-    const popularity = firstEntry.popularity;
-    const receivedTitle = firstEntry.title;
+    const totalItemsFound = data.totalItems;
     console.log('error:', error);
     console.log('statusCode:', response && response.statusCode);
-    console.log('body:', firstEntry);
-    console.log('popularity:', popularity);
+    console.log('body:', data);
+    console.log('total items', data.totalItems);
   });
 };
 
+bookSearch('the hobbit');
+
+
+module.exports = {
+  generalSearch,
+  searchMovie,
+  bookSearch
+};
