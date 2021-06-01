@@ -55,10 +55,14 @@ module.exports = function(database) {
     console.log("body", req.body);
     console.log('new item name', searchQuery);
     googleSearch(searchQuery).then(res=>{
-      // ** Make database query here **
+      const name = req.body.name;
       const listType = res;
-      const item = req.body.name;
-      console.log(`add to database: name=${item} list_type=${listType}`);
+      const dbEntry = {
+        name: name,
+        listType: listType
+      }
+      insertToDoItem(dbEntry);
+      console.log(`add to database: name=${name} list_type=${listType}`);
     });
     // const category = googleSearch(searchQuery);
     // insertToDoItem(req.body)
