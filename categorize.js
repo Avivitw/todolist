@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { response } = require("express");
 const request = require("request");
 const args = process.argv[2];
 
@@ -85,73 +86,84 @@ const googleSearch = function (query) {
   const appKey = process.env.GOOGLE_SEARCH_API_KEY;
   const encodedQuery = query.replace(/\s/g, "+");
   const url = `https://kgsearch.googleapis.com/v1/entities:search?query=${encodedQuery}&key=${appKey}&limit=1&indent=True`;
-  request(url, function (error, response, body) {
-    const data = JSON.parse(body);
-    console.log("error:", error);
-    console.log("statusCode:", response && response.statusCode);
-    // Get the types array returned from google via a workaround for the @ symbol
-    const typeWorkaround = "@type";
-    const types = data.itemListElement[0].result[typeWorkaround];
-    // description of item from google, sometimes undefined
-    const description = data.itemListElement[0].result.description;
-    console.log("description:", description);
-    console.log("type:", types);
-    console.log('args', args);
-    // Checks description first for keywords
-    // Eat list keywords
-    if (description && description.toLowerCase().includes("fruit")) {
-      console.log("added to eat list");
-      return;
-    };
-    if (description && description.toLowerCase().includes("pasta")) {
-      console.log("added to eat list");
-      return;
-    };
-    if (description && description.toLowerCase().includes("food")) {
-      console.log("added to eat list");
-      return;
-    };
-    if (description && description.toLowerCase().includes("dish")) {
-      console.log("added to eat list");
-      return;
-    }
-    if (description && description.toLowerCase().includes("cake")) {
-      console.log("added to eat list");
-      return;
-    };
-    if (description && description.toLowerCase().includes("dairy")) {
-      console.log("added to eat list");
-      return;
-    };
+  return new Promise(function(resolve, reject) {
+    request(url, function (error, response, body) {
+        const data = JSON.parse(body);
+        console.log("error:", error);
+        console.log("statusCode:", response && response.statusCode);
+        // Get the types array returned from google via a workaround for the @ symbol
+        const typeWorkaround = "@type";
+        const types = data.itemListElement[0].result[typeWorkaround];
+        // description of item from google, sometimes undefined
+        const description = data.itemListElement[0].result.description;
+        console.log("description:", description);
+        console.log("type:", types);
+        // Checks description first for keywords
+        // Eat list keywords
+        const eatKeywords = [
+          "fruit",
+          "pasta",
+          "food",
+          "dish",
+          "cake",
+          "dairy",
+          "restaurant"
+        ];
 
-    // First loop is to try to categorize an item before checking if it is a 'thing' type
-    for (const type of types) {
-      if (type.toLowerCase().includes("movie")) {
-        console.log("added to watch list");
-        return;
-      };
-      // If the type list contains book it will add it to the reading list
-      if (type.toLowerCase().includes("book")) {
-        console.log("added to reading list");
-        return;
-      };
-      if (type.toLowerCase().includes("restaurant")) {
-        console.log("added to eat list");
-        return;
-      };
-      if (type.toLowerCase().includes("product")) {
-        console.log("added to shopping list");
-        return;
-      };
-    };
-    // Second loop to categorize as thing if first loop fails to categorize
-    for (const type of types) {
-      if (type.toLowerCase().includes("thing")) {
-        console.log("added to shopping list");
-        return;
-      };
-    };
-  });
+        const watchKeywords = [
+          "movie"
+        ];
+
+        const readKeywords = [
+          "book"
+        ];
+
+        const buyKeywords = [
+          "product"
+        ];
+
+        const googleTypes = types.join(" ").toLowerCase();
+
+        // Checks description for eat keywords
+        for (const keyword of eatKeywords) {
+          if (description && description.toLowerCase().includes(keyword)) {
+            console.log("added to eat list");
+            resolve('e');
+            return;
+          };
+        };
+        for (const keyword of watchKeywords) {
+          if (description && googleTypes.includes(keyword)) {
+            console.log("added to watch list");
+            resolve('w');
+            return;
+          };
+        };
+        for (const keyword of readKeywords) {
+          if (description && googleTypes.includes(keyword)) {
+            console.log("added to read list");
+            resolve('r')
+            return;
+          };
+        };
+        for (const keyword of buyKeywords) {
+          if (description && googleTypes.includes(keyword)) {
+            console.log("added to buy list");
+            resolve('b');
+            return;
+          };
+        };
+        // Second loop to categorize as thing if first loop fails to categorize
+        for (const type of types) {
+          if (type.toLowerCase().includes("thing")) {
+            console.log("added to shopping list");
+            resolve('b');
+            return;
+          };
+        };
+      })
+
+  })
 };
 
 module.exports = {
