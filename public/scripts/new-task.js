@@ -7,21 +7,22 @@ $(document).ready(function(){
     }
     else {
       $('.add-task-button').hide();
-          }
+    }
   }
 
   // Listeners to show the add task button
-  $('.new-task-text').keyup(addButton);
+  $('.new-task-text').keyup(addButton).click(()=>{
+    const fullText = $('.new-task-text').val();
+    const encodedText = encodeURIComponent(fullText);
+    $.ajax(`/api/add-item/${fullText}`, {
+      method: "POST",
+      data: {
+        name: fullText
+      }
+    }).then(()=>{
+      $('.new-task-text').val("");
+      $('.add-task-button').hide();
+    });
+  });
 
-  $('.add-task-button').click(()=>{
-    console.log('add clicked');
-    // $.ajax({
-    //   url:"https://api.monkeylearn.com/v3/classifiers/cl_o46qggZq/classify/",
-    //   method:"POST",
-    //   data: ["Grapefruit"],
-    //   beforeSend: function (xhr) {
-    //     xhr.setRequestHeader("Authorization", "Token " + "11284b94944fd21cd3e16ad2771c02106ec38995");
-    //   }
-    // });
-  })
 });
