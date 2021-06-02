@@ -39,8 +39,23 @@ $(document).ready(function () {
       $.ajax(`/api/update-item/${item.id}`, {
         method: "POST",
         data: {priority:$el.hasClass("fas") }
+      }).then((res)=>{
+        const isPriority = res[0].priority;
+        const itemToMove = $el.parent('div');
+        // Passed the item that needs to move and if it has priority checked off already
+        movePriorityItemToTop(itemToMove, isPriority);
       });
-  }
+  };
+
+  // Moves row to top when priority icon is clicked
+  const movePriorityItemToTop = function(item, isPriority) {
+    if (isPriority) {
+      item.slideUp(()=>{
+        $('.todo-list').prepend(item);
+      });
+      item.slideDown();
+    }
+  };
 
   //Controls the edit icon
   const handleEditIconClick = function($el, item, listName) {
