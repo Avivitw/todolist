@@ -42,6 +42,7 @@
 }
 
 .todo-list {
+  width: 95%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -49,18 +50,71 @@
 }
 
 .todo-item {
-  width: 85%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 60px;
+  margin-left: 30px;
   color: white;
   font-size: 4em;
   border-bottom: 5px solid lightslategrey;
+  &.edit-item {
+    flex-wrap: wrap;
+  }
+}
+
+div.todo-item p {
+  margin: 0px 5px 0px 0px;
 }
 
 .check-box {
-  padding: 40px;
+  padding: 20px;
 }
 
+i.far.fa-star {
+  padding: 20px;
+  margin: 0px 5px;
+  &:hover {
+    color: violet;
+  }
+}
+
+i.far.fas.fa-star{
+  color: aqua;
+
+}
+i.far.fa-edit{
+  margin-left: auto;
+}
+
+
+.edit-task-text {
+  outline: none;
+  color: #2B394A;
+  background-color: white;
+  resize: none;
+  width: 100%;
+  height: 1.5em;
+  margin-top: .5em;
+  border-radius: .2em;
+}
+
+#list-select {
+  width: 100%;
+  height: 1.5em;
+  margin-top: .5em;
+  border-radius: .2em;
+}
+
+button.save {
+  margin-left: auto;
+}
+
+button.save, button.cancel {
+  border-radius: .2em;
+  margin-top: .5em;
+  margin-bottom: .5em;
+  padding: .1em .4em;
+
+}

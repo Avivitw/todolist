@@ -3,30 +3,84 @@ $(document).ready(function () {
   const lists = {
     eat: {
       title: "Eat List",
-      buttonId: "#eat-list"
+      buttonId: "#eat-list",
+      code: "e"
     },
     buy: {
       title: "Shopping List",
-      buttonId: "#buy-list"
+      buttonId: "#buy-list",
+      code: "b"
     },
     watch: {
       title: "Watch List",
-      buttonId: "#watch-list"
+      buttonId: "#watch-list",
+      code: "w"
     },
     read: {
       title: "Reading List",
-      buttonId: "#read-list"
+      buttonId: "#read-list",
+      code: "r"
     },
   };
   // Controls the checkmark of each generated box
-  const handleCheckBoxClick = function ($el) {
+  const handleCheckBoxClick = function ($el, item) {
     $el.toggleClass("fa-square fa-check-square");
       //Send to server
-      $.ajax(`/api/update-item/${$el.attr('data-id')}`, {
+      $.ajax(`/api/update-item/${item.id}`, {
         method: "POST",
         data: {isChecked:$el.hasClass("fa-check-square") }
       });
   };
+
+  //Controls the star button - priority
+  const handlePriorityIconClick = function($el, item) {
+    $el.toggleClass("fas");
+      //Send to server
+      $.ajax(`/api/update-item/${item.id}`, {
+        method: "POST",
+        data: {priority:$el.hasClass("fas") }
+      });
+  }
+
+  //Controls the edit icon
+  const handleEditIconClick = function($el, item, listName) {
+    let editForm = `<div class='todo-item edit-item' style="display:none;">
+      <textarea name="editname" class="edit-task-text">${item.name}</textarea>
+      <select name="listType" id="list-select">`
+      for(const k in lists){
+        let selected = '';
+        if(k === listName) {
+          selected = 'selected="selected" '
+        }
+        editForm += `<option ${selected}value="${lists[k].code}">${lists[k].title}</option>`;
+      }
+      editForm += `</select>
+      <button class="cancel">Cancel</button>
+      <button class="save">Save</button>
+    </div>`;
+    let $editForm = $(editForm);
+    $el.parent().after($editForm).slideUp();
+    $editForm.slideDown();
+    $editForm.find("button.cancel").click(function() {
+      $editForm.slideUp(function() {$editForm.remove()});
+      $el.parent().slideDown();
+    });
+    $editForm.find("button.save").click(function() {
+      //Send to the server
+      $.ajax(`/api/update-item/${item.id}`, {
+        method: "POST",
+        data: {name:$editForm.find(".edit-task-text").val(), listType:$editForm.find("#list-select").val()}
+      }).then(function() {
+        $(".todo-item").remove();
+        createRows(listName);
+      })
+      // $editForm.slideUp(function() {$editForm.remove()});
+      // $el.parent().slideDown();
+    });
+  }
+
+
+
 
   // Create the to-do list html items
   const createRows = function (listName) {
@@ -36,22 +90,35 @@ $(document).ready(function () {
     })
     .then((listItems)=>{
       console.log(listItems);
+      let $todoList = $(".todo-list");
       for (const item of listItems) {
         let boxStyle = "fa-square";
         if (item.is_checked) {
           boxStyle = "fa-check-square";
         }
+        let starStyle = "";
+        if(item.priority){
+          starStyle = "fas";
+        }
         // Appends a new element to the list container
-        $(".todo-list").append(
-          `<div class='todo-item'>
-            <i data-id="${item.id}" class="check-box fas ${boxStyle} fa-lg"></i>
-            <p>${item.name}</p>
-          </div>`
-        );
+        let $todoItem = $(`<div class='todo-item'>
+        <i class="check-box fas ${boxStyle} fa-lg"></i>
+        <i class="priority-star far fa-star ${starStyle}"></i>
+        <p>${item.name}</p>
+        <i class="edit-icon far fa-edit"></i>
+        </div>`);
+
+        $todoItem.find(".check-box").click(function () {
+          handleCheckBoxClick($(this), item);
+        });
+        $todoItem.find("i.priority-star").click(function() {
+          handlePriorityIconClick($(this), item);
+        });
+        $todoItem.find("i.edit-icon").click(function() {
+          handleEditIconClick($(this), item, listName);
+        });
+        $todoList.append($todoItem);
       }
-      $(".check-box").click(function () {
-        handleCheckBoxClick($(this));
-      });
     });
   };
 
