@@ -7,6 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const { googleSearch } = require('../categorize');
 const { getList, getAllMyLists, insertToDoItem, updateItem } = require('../server/database');
 const userId = 1;
 const categories = {
@@ -49,15 +50,24 @@ module.exports = function(database) {
     });
   });
 
-  router.post('/add-item', (req, res) => {
-    insertToDoItem(req.body)
-    .then(item => {
-      res.send(item);
+  router.post('/add-item/:itemname', (req, res) => {
+    const searchQuery = req.params.itemname
+    console.log("body", req.body);
+    console.log('new item name', searchQuery);
+    googleSearch(searchQuery)
+      .then(res=>{
+      const name = req.body.name;
+      const listType = res;
+      const dbEntry = {
+        name: name,
+        listType: listType
+      }
+      insertToDoItem(dbEntry);
+      console.log(`add to database: name=${name} list_type=${listType}`);
     })
-    .catch(e=>{
+      .catch(e=>{
       console.log(e);
-      res.send(e);
-    })
+    });
   })
 
   router.post('/update-item/:itemid', (req, res) => {

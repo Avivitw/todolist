@@ -37,9 +37,9 @@ const getList = function(userId, listType) {
 //Insert an item to a list
 const insertToDoItem = function(property) {
   const query = db.query(
-    `INSERT INTO lists(name)
-    VALUES($1)
-    RETURNING *;`, [property.name])
+    `INSERT INTO lists(name, list_type)
+    VALUES($1, $2)
+    RETURNING *;`, [property.name, property.listType])
   .then(res=>{
     return res.rows;
   })
