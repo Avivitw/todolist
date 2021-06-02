@@ -10,6 +10,16 @@ $(document).ready(function(){
     }
   }
 
+  const messageBox = function(addedItem) {
+    // Need to get the google data as a response to the post api request
+    const msg = `<h1>Added ${addedItem} to eat list<i class="check-icon fas fa-check-circle"></i></h1>`
+    $('.user-msg').append(msg);
+    setTimeout(()=>{
+    $('.user-msg').fadeOut();
+    }, 3000)
+  };
+
+
   // Listeners to show the add task button
   $('.new-task-text').keyup(addButton);
 
@@ -21,11 +31,12 @@ $(document).ready(function(){
        data: {
         name: fullText
       }
-    }).then(()=> {
+    }).then((res)=> {
       console.log('ajax success function was called');
+      console.log('full text', fullText);
       $('.new-task-text').val("");
       $('.add-task-button').hide();
-
+      messageBox(fullText);
     })
   });
 

@@ -48,12 +48,12 @@ $(document).ready(function () {
   };
 
   // Moves row to top when priority icon is clicked
-  const movePriorityItemToTop = function(item, isPriority) {
+  const movePriorityItemToTop = function($item, isPriority) {
     if (isPriority) {
-      item.slideUp(()=>{
-        $('.todo-list').prepend(item);
+      $item.slideUp(()=>{
+        $('.todo-list').prepend($item);
       });
-      item.slideDown();
+      $item.slideDown();
     }
   };
 
