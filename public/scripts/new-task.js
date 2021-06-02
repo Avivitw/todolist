@@ -11,18 +11,22 @@ $(document).ready(function(){
   }
 
   // Listeners to show the add task button
-  $('.new-task-text').keyup(addButton).click(()=>{
+  $('.new-task-text').keyup(addButton);
+
+  $('.add-task-button').click(()=>{
     const fullText = $('.new-task-text').val();
     const encodedText = encodeURIComponent(fullText);
-    $.ajax(`/api/add-item/${fullText}`, {
+    $.ajax(`/api/add-item/${encodedText}`, {
       method: "POST",
-      data: {
+       data: {
         name: fullText
       }
-    }).then(()=>{
+    }).then(()=> {
+      console.log('ajax success function was called');
       $('.new-task-text').val("");
       $('.add-task-button').hide();
-    });
+
+    })
   });
 
 });

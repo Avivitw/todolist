@@ -8,7 +8,8 @@ const keywords = {
       "dish",
       "cake",
       "dairy",
-      "restaurant"
+      "restaurant",
+      "dessert"
     ]
   },
   watch: {
