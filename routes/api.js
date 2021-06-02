@@ -65,7 +65,8 @@ module.exports = function(database) {
     const listId = req.params.itemid;
     const listName = req.body.listName;
     const isChecked = req.body.isChecked;
-    updateItem(listId, listType, listName, isChecked)
+    const priority = req.body.priority
+    updateItem(listId, listType, listName, isChecked, priority)
     .then(item => {
       res.send(item);
     })

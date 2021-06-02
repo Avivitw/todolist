@@ -48,7 +48,7 @@ const insertToDoItem = function(property) {
 };
 
 //update an item to in a list
-const updateItem = function(listId, listType, listName, isChecked) {
+const updateItem = function(listId, listType, listName, isChecked, priority) {
   let updates = [];
   let params = [];
   if(listType){
@@ -62,6 +62,10 @@ const updateItem = function(listId, listType, listName, isChecked) {
   if(isChecked !== undefined){
     params.push(isChecked);
     updates.push(`is_checked = $${params.length}`)
+  }
+  if(priority !== undefined){
+    params.push(priority);
+    updates.push(`priority = $${params.length}`)
   }
 
   params.push(listId);
