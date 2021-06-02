@@ -55,12 +55,28 @@ $(document).ready(function () {
         editForm += `<option ${selected}value="${lists[k].code}">${lists[k].title}</option>`;
       }
       editForm += `</select>
-      <button>
-      <button>
+      <button class="cancel">Cancel</button>
+      <button class="save">Save</button>
     </div>`;
     let $editForm = $(editForm);
     $el.parent().after($editForm).slideUp();
     $editForm.slideDown();
+    $editForm.find("button.cancel").click(function() {
+      $editForm.slideUp(function() {$editForm.remove()});
+      $el.parent().slideDown();
+    });
+    $editForm.find("button.save").click(function() {
+      //Send to the server
+      $.ajax(`/api/update-item/${item.id}`, {
+        method: "POST",
+        data: {name:$editForm.find(".edit-task-text").val(), listType:$editForm.find("#list-select").val()}
+      }).then(function() {
+        $(".todo-item").remove();
+        createRows(listName);
+      })
+      // $editForm.slideUp(function() {$editForm.remove()});
+      // $el.parent().slideDown();
+    });
   }
 
 
@@ -112,12 +128,6 @@ $(document).ready(function () {
     $(".todo-item").remove();
   });
 
-
-    // Slide down the list view when the Edit icon is clicked
-    $(".fa-edit").click(function () {
-      $(".page").slideDown();
-      $(".todo-item").remove();
-    });
 
   const showList = function(listName) {
     let listObj = lists[listName];

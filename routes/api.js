@@ -63,10 +63,10 @@ module.exports = function(database) {
   router.post('/update-item/:itemid', (req, res) => {
     const listType = req.body.listType;
     const listId = req.params.itemid;
-    const listName = req.body.listName;
+    const name = req.body.name;
     const isChecked = req.body.isChecked;
     const priority = req.body.priority
-    updateItem(listId, listType, listName, isChecked, priority)
+    updateItem(listId, listType, name, isChecked, priority)
     .then(item => {
       res.send(item);
     })
