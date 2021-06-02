@@ -74,8 +74,6 @@ $(document).ready(function () {
         $(".todo-item").remove();
         createRows(listName);
       })
-      // $editForm.slideUp(function() {$editForm.remove()});
-      // $el.parent().slideDown();
     });
   }
 

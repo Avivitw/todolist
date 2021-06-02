@@ -51,11 +51,11 @@ module.exports = function(database) {
   });
 
   router.post('/add-item/:itemname', (req, res) => {
-    const searchQuery = req.params.itemname
+    const searchQuery = req.params.itemname;
     console.log("body", req.body);
     console.log('new item name', searchQuery);
     googleSearch(searchQuery)
-      .then(res=>{
+    .then((res)=>{
       const name = req.body.name;
       const listType = res;
       const dbEntry = {
@@ -64,10 +64,10 @@ module.exports = function(database) {
       }
       insertToDoItem(dbEntry);
       console.log(`add to database: name=${name} list_type=${listType}`);
-    })
-      .catch(e=>{
+    }).catch(e=>{
       console.log(e);
     });
+    res.send('success');
   })
 
   router.post('/update-item/:itemid', (req, res) => {
