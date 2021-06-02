@@ -15,8 +15,26 @@ $(document).ready(function(){
     const msg = `<h1>Added ${addedItem} to eat list<i class="check-icon fas fa-check-circle"></i></h1>`
     $('.user-msg').append(msg);
     setTimeout(()=>{
-    $('.user-msg').fadeOut();
+    $('.user-msg').fadeOut(()=>{
+      $('.user-msg').css("display", "flex");
+      $('.user-msg').empty();
+    });
     }, 3000)
+  };
+
+  const taskAddedAnimation = function(){
+    $('#eat-list').css({
+      "background-color": "#2B394A",
+      "color": "white",
+      "box-shadow": "none"
+    })
+    setTimeout(()=>{
+      $('#eat-list').css({
+        "background-color": "white",
+        "color": "#2B394A",
+        "box-shadow": "12px 12px rgb(187, 187, 187)"
+      })
+    }, 350)
   };
 
 
