@@ -18,10 +18,10 @@
   border-radius: 25px;
   color: white;
   background-color: #2B394A;
-
 }
 
 .new-todo-form {
+  flex-grow: 1;
   padding: 20px;
   width: 75%;
 }
