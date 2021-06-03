@@ -62,6 +62,11 @@
   &.edit-item {
     flex-wrap: wrap;
   }
+  &.history-item {
+    i.far.fa-edit, i.far.fa-star {
+      color: #434c57;
+    }
+  }
 }
 
 div.todo-item p {
@@ -75,9 +80,6 @@ div.todo-item p {
 i.far.fa-star {
   padding: 20px;
   margin: 0px 5px;
-  &:hover {
-    color: violet;
-  }
 }
 
 i.far.fas.fa-star{
@@ -118,3 +120,4 @@ button.save, button.cancel {
   padding: .1em .4em;
 
 }
+

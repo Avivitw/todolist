@@ -84,7 +84,7 @@ const updateItem = function(listId, listType, listName, isChecked, priority) {
 
 const getHistoryList = function(userId) {
     const query = db.query(
-      `SELECT name, description,priority, is_checked
+      `SELECT id, name, description,priority, is_checked
       FROM lists
       Where user_id = $1
       AND is_checked = TRUE
