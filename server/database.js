@@ -25,7 +25,7 @@ const getList = function(userId, listType) {
     WHERE user_id = $1
     AND list_type = $2
     AND is_checked = FALSE
-    ORDER BY lists.id DESC
+    ORDER BY priority DESC, lists.id
     LIMIT 4;`, [userId, listType])
   .then(res=>{
     return res.rows;
