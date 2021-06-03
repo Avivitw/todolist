@@ -99,12 +99,27 @@ const getHistoryList = function(userId) {
 
 };
 
+const getListCount = function(userId, listType) {
+  const query = db.query(
+    `SELECT COUNT(list_type), list_type
+    FROM lists
+    WHERE is_checked = false AND list_type = $1 AND user_id = $2
+    GROUP BY list_type;`, [listType, userId]
+  )
+  .then(res=>{
+    console.log('database response', res)
+    return res.rows;
+  })
+  .catch(err=>{console.log(err)});
+  return query;
+};
+
 
 exports.getAllMyLists = getAllMyLists;
 exports.getList = getList;
 exports.insertToDoItem = insertToDoItem;
 exports.updateItem = updateItem;
 exports.getHistoryList = getHistoryList;
-
+exports.getListCount = getListCount;
 
 
