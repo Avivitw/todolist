@@ -1,29 +1,28 @@
-@use 'layout';
+@import 'base';
 
 .new-todo {
-  background-color: white;
+  background-color: $white;
   display:flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 25px;
-  border-bottom: #2B394A;
+  border-bottom: $text-color;
 }
+.new-todo-form {
+  flex-grow: 1;
+  padding: 20px;
+  width: 75%;
 
+}
 .add-task-button {
   height: 100px;
   width: 150px;
   font-family: 'Quicksand', sans-serif;
   font-size: 3em;
   border-radius: 25px;
-  color: white;
-  background-color: #2B394A;
-}
-
-.new-todo-form {
-  flex-grow: 1;
-  padding: 20px;
-  width: 75%;
+  color: $white;
+  background-color: $text-color;
 }
 
 .new-task-text {
@@ -31,11 +30,12 @@
   height: 95px;
   border: 5px;
   border-radius: 25px;
-  color: #2B394A;
-  background-color: white;
+  color: $text-color;
+  background-color: $white;
   resize: none;
   font-size: 4em;
   width: 95%
 }
+
 
 

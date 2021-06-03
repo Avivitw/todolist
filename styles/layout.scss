@@ -1,15 +1,4 @@
-// See: https://sass-lang.com/
-
-// Fonts
-$font-heading: Quicksand, sans-serif;
-$font-body: Quicksand, sans-serif;
-$font-buttons: Quicksand, sans-serif;
-
-// Colours
-$text-color: #2B394A;
-$accent-1: #FDA5A4;
-$accent-2: #C5D0DD;
-$white: white;
+@import 'base';
 
 body {
   touch-action: manipulation;
@@ -19,7 +8,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: white;
+  background-color: $white;
   font-family: $font-body;
   font-weight: 500;
 
@@ -27,21 +16,21 @@ body {
     font-family: $font-heading;
     color: $text-color;
     font-weight: 700;
-}
+  }
+  .button {
+    font-family: $font-heading;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+  select {
+    font-size: 64px;
+  }
+
+  option {
+    font-size: 40px;
+  }
 }
 
-select {
-  font-size: 64px;
-}
 
-option {
-  font-size: 40px;
-}
-
-.button {
-  font-family: $font-heading;
-  font-weight: 700;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-}

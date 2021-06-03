@@ -1,28 +1,28 @@
-@use 'layout';
+@import 'base';
 
 .nav {
-  color: #2B394A;
+  color: $text-color;
   width: 100%;
   height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: $white;
   position: fixed;
   top:0;
+  .nav-bar {
+    padding-left: 25px;
+    font-size: 4em;
+    .nav-icon {
+      padding: 50px;
+    }
+  }
+  #nav-text {
+    padding: 45px;
+    margin-right: 15px;
+  }
 }
 
-.nav-icon {
-  padding: 50px;
-}
 
-.nav-bar {
-  padding-left: 25px;
-  font-size: 4em;
-}
 
-#nav-text {
-  padding: 45px;
-  margin-right: 15px;
-}

@@ -1,4 +1,4 @@
-@use 'layout';
+@import 'base';
 
 .lists-group {
   height: 47vh;
@@ -6,11 +6,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: white;
+  background-color: $white;
+
+  .lists-row {
+    padding: 40px;
+    padding-right: 60px;
+    padding-left: 60px;
+    width: 100%;
+    background-color: $white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .spacer {
+      width: 100px;
+    }
+  }
 }
 
 .lists-item {
-  color: #2B394A;
+  color: $text-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,48 +32,33 @@
   margin: 10px;
   font-size: 3.5em;
   border-radius: 25px;
-  border: 5px solid #2B394A;
+  border: 5px solid $text-color;
   height: 240px;
   width: 85%;
-  background-color: white;
+  background-color: $white;
   box-shadow: 12px 12px rgb(187, 187, 187);
 }
 
 .lists-item-active {
-  background-color: #2B394A;
+  background-color: $text-color;
   border: 5px solid #C5D0DD;
-  color: white;
+  color: $white;
   box-shadow: none;
 }
 
-.lists-row {
-  padding: 40px;
-  padding-right: 60px;
-  padding-left: 60px;
-  width: 100%;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.lists-icons {
-  margin: 40px;
-}
-
-.spacer {
-  width: 100px;
+.button-wrapper {
+  padding-right: 40px;
+  .lists-icons {
+    margin: 40px;
+  }
+  .list-count {
+    color: #5b7aa0;
+    font-size: .9em;
+  }
 }
 
 .plus-icon {
   float: right;
 }
 
-.list-count {
-  color: #5b7aa0;
-  font-size: .9em;
-}
 
-.button-wrapper {
-  padding-right: 40px;
-}
