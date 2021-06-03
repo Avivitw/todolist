@@ -18,16 +18,26 @@ const googleSearch = function (query) {
         console.log("data:", data);
         // Get the types array returned from google via a workaround for the @ symbol
         if (!data.itemListElement[0]) {
-          resolve(id);
+          console.log('if statement 1');
+          resolve('u');
           return;
+        }
+        if (data.itemListElement[0].resultScore) {
+          console.log('Result score:', data.itemListElement[0].resultScore)
+          if (data.itemListElement[0].resultScore < 1) {
+            console.log('low result score');
+            resolve('u');
+            return;
+          }
         }
         const typeWorkaround = "@type";
         const types = data.itemListElement[0].result[typeWorkaround];
         // description of item from google, sometimes undefined
         const googleDescription = data.itemListElement[0].result.description;
         let detailedDescription;
-        if (!data.itemListElement[0].result.description) {
-          resolve(id);
+        if (!data.itemListElement[0].result.description && !data.itemListElement[0].result.detailedDescription) {
+          resolve('u');
+          console.log('if statement 2');
           return;
         }
         if (data.itemListElement[0].result.detailedDescription) {
@@ -51,20 +61,23 @@ const googleSearch = function (query) {
             if (googleDescription) {
               if (googleDescription.toLowerCase().includes(keyword)) {
                 resolve(id);
+                console.log('if statement 3 - description');
                 return;
               };
-            }
-            if (detailedDescription) {
-              if (detailedDescription.toLowerCase().includes(keyword)) {
-                resolve(id);
-                return;
-              }
-            }
+            };
             if (googleTypes) {
               if (googleTypes.includes(keyword)) {
                 resolve(id);
+                console.log('if statement 5 - google types');
                 return;
-              }
+              };
+            };
+            if (detailedDescription) {
+              if (detailedDescription.toLowerCase().includes(keyword)) {
+                resolve(id);
+                console.log('if statement 4 - detailed description');
+                return;
+              };
             };
             };
         };
@@ -77,7 +90,7 @@ const googleSearch = function (query) {
         // Checks description and type for buy keywords
         keywordCheck(keywords.buy);
         // Check for uncategorized keywords
-        // keywordCheck(keywords.uncategorized);
+        keywordCheck(keywords.uncategorized);
       })
   })
 };
