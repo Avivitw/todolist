@@ -92,7 +92,43 @@ $(document).ready(function () {
     });
   }
 
+  const drawRows = function (listItems, listName) {
+    let $todoList = $(".todo-list");
+    for (const item of listItems) {
+      let boxStyle = "fa-square";
+      if (item.is_checked) {
+        boxStyle = "fa-check-square";
+      }
+      let starStyle = "";
+      if (item.priority){
+        starStyle = "fas";
+      }
+      let historyClass = '';
+      if (!listName) {
+        historyClass = "history-item";
+      }
+      // Appends a new element to the list container
+      let $todoItem = $(`<div class='todo-item ${historyClass}'>
+      <i class="check-box fas ${boxStyle} fa-lg"></i>
+      <i class="priority-star far fa-star ${starStyle}"></i>
+      <p>${item.name}</p>
+      <i class="edit-icon far fa-edit"></i>
+      </div>`);
 
+      $todoItem.find(".check-box").click(function () {
+        handleCheckBoxClick($(this), item);
+      });
+      if (listName) {
+        $todoItem.find("i.priority-star").click(function() {
+          handlePriorityIconClick($(this), item);
+        });
+        $todoItem.find("i.edit-icon").click(function() {
+          handleEditIconClick($(this), item, listName);
+        });
+      }
+      $todoList.append($todoItem);
+    }
+  }
 
 
   // Create the to-do list html items
@@ -102,36 +138,7 @@ $(document).ready(function () {
       dataType: "json"
     })
     .then((listItems)=>{
-      console.log(listItems);
-      let $todoList = $(".todo-list");
-      for (const item of listItems) {
-        let boxStyle = "fa-square";
-        if (item.is_checked) {
-          boxStyle = "fa-check-square";
-        }
-        let starStyle = "";
-        if(item.priority){
-          starStyle = "fas";
-        }
-        // Appends a new element to the list container
-        let $todoItem = $(`<div class='todo-item'>
-        <i class="check-box fas ${boxStyle} fa-lg"></i>
-        <i class="priority-star far fa-star ${starStyle}"></i>
-        <p>${item.name}</p>
-        <i class="edit-icon far fa-edit"></i>
-        </div>`);
-
-        $todoItem.find(".check-box").click(function () {
-          handleCheckBoxClick($(this), item);
-        });
-        $todoItem.find("i.priority-star").click(function() {
-          handlePriorityIconClick($(this), item);
-        });
-        $todoItem.find("i.edit-icon").click(function() {
-          handleEditIconClick($(this), item, listName);
-        });
-        $todoList.append($todoItem);
-      }
+      drawRows(listItems, listName);
     });
   };
 
@@ -141,21 +148,36 @@ $(document).ready(function () {
     $(".todo-item").remove();
   });
 
-
-  const showList = function(listName) {
+  //register click handler for button-id per list name
+  const registerListButtonClick = function(listName) {
     let listObj = lists[listName];
     $(listObj.buttonId).click(function () {
-      $(".list-title").html(listObj.title);
+      $(".list-title").text(listObj.title);
       // Create the to-do list html items and add them to the page
       createRows(listName);
       $(".page").slideUp();
     });
 
   };
-  showList('eat');
-  showList('buy');
-  showList('watch');
-  showList('read');
+  registerListButtonClick('eat');
+  registerListButtonClick('buy');
+  registerListButtonClick('watch');
+  registerListButtonClick('read');
+
+  // register history-list handler
+  $('.nav-icon').click(function() {
+    $.ajax(`/api/history-list`, {
+      method: "GET",
+      dataType: "json"
+    })
+    .then((listItems)=>{
+      $(".list-title").text('History');
+      //clear rows if exist
+      $(".todo-item").remove();
+      drawRows(listItems)
+      $(".page").slideUp();
+    });
+  });
 
 
 });

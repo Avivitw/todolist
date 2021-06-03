@@ -8,7 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const { googleSearch } = require('../categorize');
-const { getList, getAllMyLists, insertToDoItem, updateItem } = require('../server/database');
+const { getList, getAllMyLists, insertToDoItem, updateItem, getHistoryList } = require('../server/database');
 const userId = 1;
 const categories = {
   eat: "e",
@@ -39,6 +39,20 @@ module.exports = function(database) {
 
   router.get('/all-lists', (req, res) => {
     getAllMyLists(userId)
+    .then((queryResults)=>{
+      // Send the query results to the front end as json
+      res.json(queryResults);
+      console.log(queryResults);
+    })
+    .catch(e => {
+      console.error(e);
+      res.send(e)
+    });
+  });
+
+
+  router.get('/history-list', (req, res) => {
+    getHistoryList(userId)
     .then((queryResults)=>{
       // Send the query results to the front end as json
       res.json(queryResults);
