@@ -17,17 +17,17 @@ const googleSearch = function (query) {
         console.log("error:", error);
         console.log("data:", data);
         // Get the types array returned from google via a workaround for the @ symbol
-        const typeWorkaround = "@type";
         if (!data.itemListElement[0]) {
-          resolve('u');
+          resolve(id);
           return;
         }
+        const typeWorkaround = "@type";
         const types = data.itemListElement[0].result[typeWorkaround];
         // description of item from google, sometimes undefined
         const googleDescription = data.itemListElement[0].result.description;
         let detailedDescription;
         if (!data.itemListElement[0].result.description) {
-          resolve('u');
+          resolve(id);
           return;
         }
         if (data.itemListElement[0].result.detailedDescription) {
@@ -77,7 +77,7 @@ const googleSearch = function (query) {
         // Checks description and type for buy keywords
         keywordCheck(keywords.buy);
         // Check for uncategorized keywords
-        keywordCheck(keywords.uncategorized);
+        // keywordCheck(keywords.uncategorized);
       })
   })
 };
