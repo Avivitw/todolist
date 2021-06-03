@@ -30,6 +30,14 @@ body {
 }
 }
 
+select {
+  font-size: 64px;
+}
+
+option {
+  font-size: 40px;
+}
+
 .button {
   font-family: $font-heading;
   font-weight: 700;
