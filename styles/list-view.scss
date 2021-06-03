@@ -1,11 +1,11 @@
-@use 'layout';
+@import 'base';
 
 .list-view {
   display:flex;
   flex-direction: column;
   justify-content: stretch;
   align-items: stretch;
-  background-color: #3e5877;
+  background-color: $background-color;
   border-radius: 80px;
 }
 
@@ -23,14 +23,14 @@
 }
 
 .collapse-icon {
-  color: white;
+  color: $white;
   padding: 50px;
   padding-right: 60px;
   font-size: 5em;
 }
 
 .collapse-icon:active {
-  color: #2B394A;
+  color: $text-color;
 }
 
 .edit-option {
@@ -39,7 +39,7 @@
 
 
 .list-title {
-  color: white;
+  color: $white;
   font-size: 5em;
   margin: 15px;
   padding-left: 80px;
@@ -61,7 +61,7 @@
   justify-content: flex-start;
   align-items: center;
   margin-left: 30px;
-  color: white;
+  color: $white;
   font-size: 4em;
   border-bottom: 5px solid lightslategrey;
   &.edit-item {
@@ -99,8 +99,8 @@ i.far.fa-edit{
 
 .edit-task-text {
   outline: none;
-  color: #2B394A;
-  background-color: white;
+  color: $text-color;
+  background-color: $white;
   resize: none;
   width: 100%;
   height: 1.5em;

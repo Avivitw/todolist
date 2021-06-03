@@ -1,14 +1,14 @@
-@use 'layout';
+@import 'base';
 
 .nav {
-  color: #2B394A;
+  color: $text-color;
   width: 100%;
   height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: $white;
   position: fixed;
   top:0;
 }

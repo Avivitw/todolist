@@ -1,15 +1,6 @@
-// See: https://sass-lang.com/
+@import 'base';
 
-// Fonts
-$font-heading: Quicksand, sans-serif;
-$font-body: Quicksand, sans-serif;
-$font-buttons: Quicksand, sans-serif;
 
-// Colours
-$text-color: #2B394A;
-$accent-1: #FDA5A4;
-$accent-2: #C5D0DD;
-$white: white;
 
 body {
   touch-action: manipulation;
@@ -19,7 +10,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: white;
+  background-color: $white;
   font-family: $font-body;
   font-weight: 500;
 
