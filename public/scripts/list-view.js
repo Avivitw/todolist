@@ -144,6 +144,10 @@ $(document).ready(function () {
 
   // Slide down the list view when the icon is clicked
   $(".collapse-icon").click(function () {
+    window.retrieveListCount('e');
+    window.retrieveListCount('r');
+    window.retrieveListCount('w');
+    window.retrieveListCount('b');
     $(".page").slideDown();
     $(".todo-item").remove();
   });
@@ -178,6 +182,5 @@ $(document).ready(function () {
       $(".page").slideUp();
     });
   });
-
 
 });
