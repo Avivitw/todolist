@@ -15,12 +15,30 @@ const googleSearch = function (query) {
     request(url, function (error, response, body) {
         const data = JSON.parse(body);
         console.log("error:", error);
+        console.log("data:", data);
         // Get the types array returned from google via a workaround for the @ symbol
         const typeWorkaround = "@type";
+        if (!data.itemListElement[0]) {
+          resolve('u');
+          return;
+        }
         const types = data.itemListElement[0].result[typeWorkaround];
         // description of item from google, sometimes undefined
         const googleDescription = data.itemListElement[0].result.description;
-        console.log("description:", googleDescription);
+        let detailedDescription;
+        if (!data.itemListElement[0].result.description) {
+          resolve('u');
+          return;
+        }
+        if (data.itemListElement[0].result.detailedDescription) {
+          detailedDescription = data.itemListElement[0].result.detailedDescription.articleBody;
+        }
+        // const wikiArticle = data.itemListElement[0].result.detailedDescription.articleBody;
+        console.log("result:", data.itemListElement[0].result);
+        // console.log("wiki article:", wikiArticle);
+        if (googleDescription) {
+          console.log("description", googleDescription);
+        };
         console.log("type:", types);
         // Checks description first for keywords
         // Eat list keywords
@@ -35,12 +53,18 @@ const googleSearch = function (query) {
                 resolve(id);
                 return;
               };
-            };
+            }
+            if (detailedDescription) {
+              if (detailedDescription.toLowerCase().includes(keyword)) {
+                resolve(id);
+                return;
+              }
+            }
             if (googleTypes) {
               if (googleTypes.includes(keyword)) {
                 resolve(id);
                 return;
-              };
+              }
             };
             };
         };
@@ -52,6 +76,8 @@ const googleSearch = function (query) {
         keywordCheck(keywords.read);
         // Checks description and type for buy keywords
         keywordCheck(keywords.buy);
+        // Check for uncategorized keywords
+        keywordCheck(keywords.uncategorized);
       })
   })
 };

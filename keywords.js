@@ -9,7 +9,11 @@ const keywords = {
       "cake",
       "dairy",
       "restaurant",
-      "dessert"
+      "dessert",
+      "pepper",
+      "pork",
+      "beef",
+      "chili"
     ]
   },
   watch: {
@@ -30,6 +34,12 @@ const keywords = {
     id:'b',
     arrayOfKeywords: [
       "product"
+    ]
+  },
+  uncategorized: {
+    id: 'u',
+    arrayOfKeywords: [
+      "song",
     ]
   }
 }
