@@ -99,12 +99,12 @@ const getHistoryList = function(userId) {
 
 };
 
-const getListCount = function(userId, listType) {
+const getListCount = function(userId) {
   const query = db.query(
     `SELECT COUNT(list_type), list_type
     FROM lists
-    WHERE is_checked = false AND list_type = $1 AND user_id = $2
-    GROUP BY list_type;`, [listType, userId]
+    WHERE is_checked = false AND user_id = $1
+    GROUP BY list_type;`, [userId]
   )
   .then(res=>{
     console.log('database response', res)

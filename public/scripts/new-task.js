@@ -67,9 +67,7 @@ $(document).ready(function(){
         name: fullText
       }
     }).then((res)=> {
-      const listType = res.listType;
-      console.log(res);
-      window.retrieveListCount(listType);
+      window.retrieveListCount();
       console.log('json response', res);
       console.log('ajax success function was called');
       console.log('full text', fullText);

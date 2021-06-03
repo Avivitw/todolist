@@ -4,21 +4,19 @@ $(document).ready(function() {
     $(`#${listType}`).text(`${count} Items`);
   };
 
-  const retrieveListCount = function(listType) {
-    $.ajax(`/api/get-list-count/${listType}`, {
+  const retrieveListCount = function() {
+    $.ajax(`/api/get-list-count`, {
       method: "GET"
     }).then((res)=> {
       console.log(res);
-      const listCount = res[0].count;
-      console.log("count", res[0].count);
-      changeCount(listType, listCount);
+      for (const list of res) {
+        let listCount = list.count;
+        let listType = list.list_type;
+        changeCount(listType, listCount);
+      }
     })
   };
 
-  retrieveListCount('e');
-  retrieveListCount('r');
-  retrieveListCount('w');
-  retrieveListCount('b');
-
+  retrieveListCount();
   window.retrieveListCount = retrieveListCount;
 })
