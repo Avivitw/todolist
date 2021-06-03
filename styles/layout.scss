@@ -12,6 +12,7 @@ $accent-2: #C5D0DD;
 $white: white;
 
 body {
+  touch-action: manipulation;
   position: fixed;
   top: 10vh;
   margin: 0;
