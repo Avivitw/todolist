@@ -33,13 +33,17 @@ const keywords = {
   buy: {
     id:'b',
     arrayOfKeywords: [
-      "product"
+      "product",
+      "thing",
+      "laptop"
     ]
   },
   uncategorized: {
     id: 'u',
     arrayOfKeywords: [
       "song",
+      "corporation",
+      "organization"
     ]
   }
 }
