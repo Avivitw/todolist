@@ -55,19 +55,23 @@ module.exports = function(database) {
     console.log("body", req.body);
     console.log('new item name', searchQuery);
     googleSearch(searchQuery)
-    .then((res)=>{
+    .then((response)=>{
       const name = req.body.name;
-      const listType = res;
+      const listType = response;
       const dbEntry = {
         name: name,
         listType: listType
       }
-      insertToDoItem(dbEntry);
-      console.log(`add to database: name=${name} list_type=${listType}`);
+      res.json(dbEntry);
+      if (!listType === 'u') {
+        insertToDoItem(dbEntry);
+        console.log(`add to database: name=${name} list_type=${listType}`);
+      } else {
+        console.log('uncategorized, not added to DB');
+      }
     }).catch(e=>{
       console.log(e);
     });
-    res.send('success');
   })
 
   router.post('/update-item/:itemid', (req, res) => {
