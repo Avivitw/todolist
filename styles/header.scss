@@ -6,43 +6,39 @@
   justify-content:space-between;
   align-items: center;
   height: 45vh;
-  background-color: white;
-}
-
-.avatar {
-  font-size: 4em;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#user-name {
-  color: #2B394A;
-  margin: 0;
-  margin-top: 25px;
-}
-
-.profile-pic {
-  height:auto;
-  padding: 15px;
-  border-radius: 160px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: #2B394A;
-  margin-top: 25px;
-}
-
-.user-msg {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: white;
-  font-size: 1.6em;
+  background-color: $white;
+  .avatar {
+    font-size: 4em;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #user-name {
+    color: $text-color;
+    margin: 0;
+    margin-top: 25px;
+  }
+  .profile-pic {
+    height:auto;
+    padding: 15px;
+    border-radius: 160px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: $text-color;
+    margin-top: 25px;
+  }
+  .user-msg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: $white;
+    font-size: 1.6em;
+  }
 }
 
 .check-icon {
