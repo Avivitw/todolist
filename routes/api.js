@@ -76,11 +76,6 @@ module.exports = function(database) {
         name: name,
         listType: listType
       }
-<<<<<<< HEAD
-      insertToDoItem(dbEntry);
-      console.log(`add to database: name=${name} list_type=${listType}`);
-      }).catch(e=>{
-=======
       res.json(dbEntry);
       if (!listType === 'u') {
         insertToDoItem(dbEntry);
@@ -89,7 +84,6 @@ module.exports = function(database) {
         console.log('uncategorized, not added to DB');
       }
     }).catch(e=>{
->>>>>>> master
       console.log(e);
     });
   })
