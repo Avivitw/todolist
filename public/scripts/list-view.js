@@ -87,7 +87,7 @@ $(document).ready(function () {
       dataType: "json"
     })
     .then((listItems)=>{
-      console.log(listItems);
+      // console.log(listItems);
       let $todoList = $(".todo-list");
       for (const item of listItems) {
         let boxStyle = "fa-square";

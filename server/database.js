@@ -82,11 +82,29 @@ const updateItem = function(listId, listType, listName, isChecked, priority) {
   return query;
 };
 
+const getHistoryList = function(userId) {
+    const query = db.query(
+      `SELECT name, description,priority, is_checked
+      FROM lists
+      Where user_id = $1
+      AND is_checked = TRUE
+      ORDER BY lists.id DESC
+      LIMIT 10
+      ;`, [userId])
+    .then(res=>{
+      return res.rows;
+    })
+    .catch(err=>{console.log(err)});
+    return query;
+
+};
+
 
 exports.getAllMyLists = getAllMyLists;
 exports.getList = getList;
 exports.insertToDoItem = insertToDoItem;
 exports.updateItem = updateItem;
+exports.getHistoryList = getHistoryList;
 
 
 
