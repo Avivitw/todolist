@@ -8,7 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const { googleSearch } = require('../categorize');
-const { getList, getAllMyLists, insertToDoItem, updateItem, getHistoryList } = require('../server/database');
+const { getList, getAllMyLists, insertToDoItem, updateItem, getHistoryList, getListCount } = require('../server/database');
 const userId = 1;
 const categories = {
   eat: "e",
@@ -77,12 +77,8 @@ module.exports = function(database) {
         listType: listType
       }
       res.json(dbEntry);
-      if (!listType === 'u') {
         insertToDoItem(dbEntry);
         console.log(`add to database: name=${name} list_type=${listType}`);
-      } else {
-        console.log('uncategorized, not added to DB');
-      }
     }).catch(e=>{
       console.log(e);
     });
@@ -103,6 +99,18 @@ module.exports = function(database) {
       res.send(e);
     })
   });
+
+  router.get('/get-list-count/:listType', (req, res) => {
+    const listType = req.params.listType;
+    getListCount(1, listType)
+    .then(item=>{
+      res.send(item);
+    })
+    .catch(e=>{
+      console.log(e);
+      res.send(e);
+    })
+  })
 
   return router;
 };

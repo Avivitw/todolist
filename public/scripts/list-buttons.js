@@ -1,20 +1,24 @@
-// $(document).ready(function() {
-//   console.log('dom is ready');
-//   // Handlers for list buttons
-//   $("#eat-list").click(function(){
-//     console.log('slidup triggered');
-//     $(".page").slideUp();
-//   });
-//   $("#buy-list").click(function(){
-//     console.log('slidup triggered');
-//     $(".page").slideUp();
-//   });
-//   $("#watch-list").click(function(){
-//     console.log('slidup triggered');
-//     $(".page").slideUp();
-//   });
-//   $("#read-list").click(function(){
-//     console.log('slidup triggered');
-//     $(".page").slideUp();
-//   });
-// })
+$(document).ready(function() {
+
+  const changeCount = function(listType, count) {
+    $(`#${listType}`).text(`${count} Items`);
+  };
+
+  const retrieveListCount = function(listType) {
+    $.ajax(`/api/get-list-count/${listType}`, {
+      method: "GET"
+    }).then((res)=> {
+      console.log(res);
+      const listCount = res[0].count;
+      console.log("count", res[0].count);
+      changeCount(listType, listCount);
+    })
+  };
+
+  retrieveListCount('e');
+  retrieveListCount('r');
+  retrieveListCount('w');
+  retrieveListCount('b');
+
+  window.retrieveListCount = retrieveListCount;
+})

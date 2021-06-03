@@ -33,6 +33,10 @@
   color: #2B394A;
 }
 
+.edit-option {
+  font-size: 5px;
+}
+
 
 .list-title {
   color: white;
@@ -42,6 +46,7 @@
 }
 
 .todo-list {
+  overflow: auto;
   width: 95%;
   display: flex;
   flex-direction: column;
@@ -83,11 +88,12 @@ i.far.fa-star {
 }
 
 i.far.fas.fa-star{
-  color: aqua;
+  color: gold;
 
 }
 i.far.fa-edit{
   margin-left: auto;
+  margin-right: 35px;
 }
 
 

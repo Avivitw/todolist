@@ -1,5 +1,5 @@
 const db = require('./dbconnect');
-
+const limit = 20;
 // Get all the lists for a user
 const getAllMyLists = function(userId) {
   const query = db.query(
@@ -7,7 +7,7 @@ const getAllMyLists = function(userId) {
     FROM lists
     Where users.id = $1
     AND is_checked = FALSE
-    LIMIT 4
+    LIMIT ${limit}
     ORDER BY lists.id DESC
     ;`, [userId])
   .then(res=>{
@@ -26,7 +26,7 @@ const getList = function(userId, listType) {
     AND list_type = $2
     AND is_checked = FALSE
     ORDER BY priority DESC, lists.id
-    LIMIT 4;`, [userId, listType])
+    LIMIT ${limit};`, [userId, listType])
   .then(res=>{
     return res.rows;
   })
@@ -89,7 +89,7 @@ const getHistoryList = function(userId) {
       Where user_id = $1
       AND is_checked = TRUE
       ORDER BY lists.id DESC
-      LIMIT 10
+      LIMIT ${limit}
       ;`, [userId])
     .then(res=>{
       return res.rows;
@@ -99,12 +99,27 @@ const getHistoryList = function(userId) {
 
 };
 
+const getListCount = function(userId, listType) {
+  const query = db.query(
+    `SELECT COUNT(list_type), list_type
+    FROM lists
+    WHERE is_checked = false AND list_type = $1 AND user_id = $2
+    GROUP BY list_type;`, [listType, userId]
+  )
+  .then(res=>{
+    console.log('database response', res)
+    return res.rows;
+  })
+  .catch(err=>{console.log(err)});
+  return query;
+};
+
 
 exports.getAllMyLists = getAllMyLists;
 exports.getList = getList;
 exports.insertToDoItem = insertToDoItem;
 exports.updateItem = updateItem;
 exports.getHistoryList = getHistoryList;
-
+exports.getListCount = getListCount;
 
 

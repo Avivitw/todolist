@@ -67,7 +67,7 @@ $(document).ready(function () {
         if(k === listName) {
           selected = 'selected="selected" '
         }
-        editForm += `<option ${selected}value="${lists[k].code}">${lists[k].title}</option>`;
+        editForm += `<option class='edit-option' ${selected}value="${lists[k].code}">${lists[k].title}</option>`;
       }
       editForm += `</select>
       <button class="cancel">Cancel</button>
@@ -144,6 +144,10 @@ $(document).ready(function () {
 
   // Slide down the list view when the icon is clicked
   $(".collapse-icon").click(function () {
+    window.retrieveListCount('e');
+    window.retrieveListCount('r');
+    window.retrieveListCount('w');
+    window.retrieveListCount('b');
     $(".page").slideDown();
     $(".todo-item").remove();
   });
@@ -153,11 +157,12 @@ $(document).ready(function () {
     let listObj = lists[listName];
     $(listObj.buttonId).click(function () {
       $(".list-title").text(listObj.title);
+      $(listObj.buttonId).toggleClass("lists-item-active");
+      setTimeout(()=>{$(listObj.buttonId).toggleClass("lists-item-active");}, 500)
       // Create the to-do list html items and add them to the page
       createRows(listName);
       $(".page").slideUp();
     });
-
   };
   registerListButtonClick('eat');
   registerListButtonClick('buy');
@@ -178,6 +183,5 @@ $(document).ready(function () {
       $(".page").slideUp();
     });
   });
-
 
 });
