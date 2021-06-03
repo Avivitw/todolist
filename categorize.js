@@ -29,7 +29,9 @@ const googleSearch = function (query) {
         // Check if a resultScore exists
         if (data.itemListElement[0].resultScore) {
           console.log('Result score:', data.itemListElement[0].resultScore)
-          // If it exists, but is lower than 1, return uncategorized (most good searches are 5000+ score)
+          // If it exists, but is lower than 1, return uncategorized
+          // most clear match searches are 5000+ score from google
+          // unclear searches will be 0.9999 and below from google
           if (data.itemListElement[0].resultScore < 1) {
             console.log('low result score');
             resolve('u');
