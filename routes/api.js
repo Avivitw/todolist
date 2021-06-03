@@ -100,9 +100,8 @@ module.exports = function(database) {
     })
   });
 
-  router.get('/get-list-count/:listType', (req, res) => {
-    const listType = req.params.listType;
-    getListCount(1, listType)
+  router.get('/get-list-count', (req, res) => {
+    getListCount(userId)
     .then(item=>{
       res.send(item);
     })
