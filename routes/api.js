@@ -66,8 +66,6 @@ module.exports = function(database) {
 
   router.post('/add-item/:itemname', (req, res) => {
     const searchQuery = req.params.itemname;
-    console.log("body", req.body);
-    console.log('new item name', searchQuery);
     googleSearch(searchQuery)
     .then((response)=>{
       const name = req.body.name;
@@ -78,7 +76,6 @@ module.exports = function(database) {
       }
       res.json(dbEntry);
         insertToDoItem(dbEntry);
-        console.log(`add to database: name=${name} list_type=${listType}`);
     }).catch(e=>{
       console.log(e);
     });

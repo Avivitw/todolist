@@ -8,7 +8,6 @@ $(document).ready(function() {
     $.ajax(`/api/get-list-count`, {
       method: "GET"
     }).then((res)=> {
-      console.log(res);
       for (const list of res) {
         let listCount = list.count;
         let listType = list.list_type;

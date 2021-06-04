@@ -107,7 +107,6 @@ const getListCount = function(userId) {
     GROUP BY list_type;`, [userId]
   )
   .then(res=>{
-    console.log('database response', res)
     return res.rows;
   })
   .catch(err=>{console.log(err)});
