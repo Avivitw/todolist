@@ -11,7 +11,6 @@ $(document).ready(function(){
   }
 
   const messageBox = function(addedItem) {
-    console.log(addedItem.listType);
     let listName = 'u';
     if (addedItem.listType === 'e') {
       listName = 'eat';
@@ -68,9 +67,6 @@ $(document).ready(function(){
       }
     }).then((res)=> {
       window.retrieveListCount();
-      console.log('json response', res);
-      console.log('ajax success function was called');
-      console.log('full text', fullText);
       $('.new-task-text').val("");
       $('.add-task-button').hide();
       messageBox(res);
