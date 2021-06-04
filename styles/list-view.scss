@@ -25,85 +25,87 @@
     }
   }
   .todo-list {
-  overflow: auto;
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  .todo-item {
-    width: 100%;
+    overflow-y: auto;
+    width: 95%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    margin-left: 30px;
-    color: $white;
-    font-size: 4em;
-    border-bottom: 5px solid lightslategrey;
-    &.edit-item {
-      flex-wrap: wrap;
-      width: 97%;
-    }
-    &.history-item {
-      i.far.fa-edit, i.far.fa-star {
-        color: #434c57;
+    align-items: flex-start;
+    height: 84%;
+    padding-bottom: 40px;
+    .todo-item {
+      width: 96%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      margin-left: 30px;
+      color: $white;
+      font-size: 4em;
+      border-bottom: 5px solid lightslategrey;
+      &.edit-item {
+        flex-wrap: wrap;
+        width: 97%;
+      }
+      &.history-item {
+        i.far.fa-edit, i.far.fa-star {
+          color: #434c57;
+        }
+      }
+
+      p {
+        margin: 0px 5px 0px 0px;
+      }
+      .check-box {
+        padding: 20px;
+      }
+
+      i.far.fa-star {
+        padding: 20px;
+        margin: 0px 5px;
+      }
+
+      i.far.fas.fa-star{
+        color: gold;
+
+      }
+
+      i.far.fa-edit{
+        margin-left: auto;
+        margin-right: 10px;
+      }
+
+      .edit-task-text {
+        outline: none;
+        color: $text-color;
+        background-color: $white;
+        resize: none;
+        width: 100%;
+        height: 1.5em;
+        margin-top: .5em;
+        border-radius: .2em;
+      }
+
+      #list-select {
+        width: 100%;
+        height: 1.5em;
+        margin-top: .5em;
+        border-radius: .2em;
+      }
+
+      button.save {
+        margin-left: auto;
+      }
+
+      button.save, button.cancel {
+        border-radius: .2em;
+        margin-top: .5em;
+        margin-bottom: .5em;
+        padding: .1em .4em;
+
       }
     }
-
-    p {
-      margin: 0px 5px 0px 0px;
-    }
-    .check-box {
-      padding: 20px;
-    }
-
-    i.far.fa-star {
-      padding: 20px;
-      margin: 0px 5px;
-    }
-
-    i.far.fas.fa-star{
-      color: gold;
-
-    }
-
-    i.far.fa-edit{
-      margin-left: auto;
-      margin-right: 35px;
-    }
-
-    .edit-task-text {
-      outline: none;
-      color: $text-color;
-      background-color: $white;
-      resize: none;
-      width: 100%;
-      height: 1.5em;
-      margin-top: .5em;
-      border-radius: .2em;
-    }
-
-    #list-select {
-      width: 100%;
-      height: 1.5em;
-      margin-top: .5em;
-      border-radius: .2em;
-    }
-
-    button.save {
-      margin-left: auto;
-    }
-
-    button.save, button.cancel {
-      border-radius: .2em;
-      margin-top: .5em;
-      margin-bottom: .5em;
-      padding: .1em .4em;
-
-    }
   }
-}
 }
 
 .collapse-icon {
