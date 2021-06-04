@@ -43,6 +43,7 @@
     border-bottom: 5px solid lightslategrey;
     &.edit-item {
       flex-wrap: wrap;
+      width: 97%;
     }
     &.history-item {
       i.far.fa-edit, i.far.fa-star {
