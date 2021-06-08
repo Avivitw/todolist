@@ -10,8 +10,13 @@ This project is not finished as we had a tight timeline for creating a demo.
 
 ## Screenshots
 
+### Gif demo
 !["Gif demo"](https://github.com/Avivitw/todolist/blob/master/docs/to-do-list.gif?raw=true)
+
+### Main page
 !["Main page"](https://github.com/Avivitw/todolist/blob/master/docs/Screen%20Shot%202021-06-04%20at%2012.08.43%20PM.png?raw=true)
+
+### List - open state
 !["List - open state"](https://github.com/Avivitw/todolist/blob/master/docs/Screen%20Shot%202021-06-04%20at%2012.22.24%20PM.png?raw=true)
 
 ## Stretch/Additional Features
