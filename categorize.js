@@ -3,7 +3,7 @@ const e = require("express");
 const { response } = require("express");
 const request = require("request");
 const keywords = require('./keywords');
-const args = process.argv[2];
+
 
 // This function returns a guess 'e', 'w', 'r', 'b', 'u' to categorize item for saving to db
 const googleSearch = function (query) {
